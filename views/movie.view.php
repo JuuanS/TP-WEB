@@ -10,15 +10,6 @@ class MoviesView
         $this->smarty = new Smarty();
     }
 
-    // function console_log($output, $with_script_tags = true) {
-    //     $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
-    // ');';
-    //     if ($with_script_tags) {
-    //         $js_code = '<script>' . $js_code . '</script>';
-    //     }
-    //     echo $js_code;
-    // }
-
     function showMovies($movies, $categories)
     {
         $this->smarty->assign('title', 'Listado de Peliculas');
@@ -28,13 +19,14 @@ class MoviesView
         $this->smarty->display('templates/movies-list.tpl');
     }
 
-    function showMovieForm($movie, $categories, $mode)
+    function showMovieForm($movie, $categories, $mode, $error = null)
     {
         $fromTitle = $mode === 'create' ? 'Agregar Pelicula' : 'Editar Pelicula - ' . $movie->title;
         $this->smarty->assign('title', $fromTitle);
         $this->smarty->assign('mode', $mode);
         $this->smarty->assign('movie', $movie);
         $this->smarty->assign('categories', $categories);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/movie-form.tpl');
     }
 
