@@ -1,19 +1,19 @@
 <?php
 require_once 'models/user.model.php';
-require_once 'views/auth.view.php';
+require_once 'views/category.view.php';
 require_once 'helpers/auth.helper.php';
 
 class CategoryController {
     private $categoryModel;
     private $categoryView;
-    private $movieModel;
     private $authHelper;
 
     public function __construct() {
         $this->categoryModel = new CategoryModel();
         $this->categoryView = new CategoryView();
-        $this->movieModel = new MovieModel();
         $this->authHelper = new AuthHelper();
+
+        $this->authHelper->checkLoggedIn();
     }
 
     function redirectToCategories()
@@ -21,34 +21,45 @@ class CategoryController {
         header("Location: " . BASE_URL . "categorias");
     }
 
+    public function showCategories()
+    {
+        $categories = $this->categoryModel->getAllCategories();
+        $this->categoryView->showCategories($categories, $categories);
+    }
+
+    public function showAddCategory()
+    {
+        $mode = 'create';
+        $this->categoryView->showCategoryForm(null, $mode);
+    }
+
+    public function showEditCategory($categoryID)
+    {
+        $category = $this->categoryModel->getCategoryByID($categoryID);
+        $mode = 'edit';
+        $this->categoryView->showCategoryForm($category, $mode);
+    }
+
     function addCategory()
     {
-        $categoryName = $_REQUEST['category'];
+        $categoryName = $_REQUEST['categoryName'];
 
-        if (!empty($title)) {
+        if (!empty($categoryName)) {
             $this->categoryModel->insertCategory($categoryName);
             $this->redirectToCategories();
-        } else {
-            //MOSTRAR ERROR
         }
     }
 
     function deleteCategory($categoryID)
     {
-        //VALIDAR QUE NO ESTE ASOCIADA A NINGUNA PELICULA
-        // $queryMovies = $this->db->prepare('SELECT COUNT(*) FROM movies WHERE category_id = ?');
-        // $queryMovies->execute([$categoryID]);
-        // $asociatedMovies = $queryMovies->fetch(PDO::FETCH_OBJ);
-        // if ($asociatedMovies === 0) {
-
         $this->categoryModel->deleteCategory($categoryID);
         $this->redirectToCategories();
     }
 
     function updateCategory($categoryID)
     {
-        $categoryID = $_REQUEST['category'];
-        $this->categoryModel->updateCategory($categoryID, $$categoryName);
+        $categoryName = $_REQUEST['categoryName'];
+        $this->categoryModel->updateCategory($categoryID, $categoryName);
         $this->redirectToCategories();
     }
 }

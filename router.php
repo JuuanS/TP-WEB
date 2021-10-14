@@ -1,5 +1,6 @@
 <?php
 require_once 'controllers/movie.controller.php';
+require_once 'controllers/category.controller.php';
 require_once 'controllers/auth.controller.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
@@ -13,6 +14,7 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 switch ($params[0]) {
+        // Login
     case 'login':
         $authController = new AuthController();
         $authController->showLogin();
@@ -29,6 +31,7 @@ switch ($params[0]) {
         $authController = new AuthController();
         $authController->logout();
         break;
+        // Movies
     case 'peliculas':
         $movieController = new MovieController();
         $movieController->showMovies();
@@ -61,9 +64,30 @@ switch ($params[0]) {
         $movieController = new MovieController();
         $movieController->updateMovies($params[1]);
         break;
-
+        // Categories
     case 'categorias':
-        echo 'CATEGORIAS';
+        $categoriesController = new CategoryController();
+        $categoriesController->showCategories();
+        break;
+    case 'editar-categoria':
+        $categoriesController = new CategoryController();
+        $categoriesController->showEditCategory($params[1]);
+        break;
+    case 'agregar-categoria':
+        $categoriesController = new CategoryController();
+        $categoriesController->showAddCategory();
+        break;
+    case 'insertar-categoria':
+        $categoriesController = new CategoryController();
+        $categoriesController->addCategory();
+        break;
+    case 'actualizar-categoria':
+        $categoriesController = new CategoryController();
+        $categoriesController->updateCategory($params[1]);
+        break;
+    case 'borrar-categoria':
+        $categoriesController = new CategoryController();
+        $categoriesController->deleteCategory($params[1]);
         break;
     default:
         $smarty = new Smarty();

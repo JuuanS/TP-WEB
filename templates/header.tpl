@@ -26,13 +26,19 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="">Peliculas</a>
                         </li>
+                        {if isset($smarty.session.USER_ID) && $smarty.session.USER_ROLE === 'ADMIN'}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="categorias">Categorias</a>
+                            </li>
+                        {/if}
+                    
 
                         <li class="nav-item ms-auto  d-flex justify-content-center align-items-center">
                             {if isset($smarty.session.USER_ID)}
                                 <div>
                                     {$smarty.session.USER_EMAIL}
                                 </div>
-                                <a class="nav-link btn btn-primary text-white ms-3" href="logout">Logout</a>
+                                <a class="nav-link btn btn-primary text-white ms-3" href="logout">Cerrar Sesión</a>
                             {else}
                                 <a class="nav-link btn btn-primary text-white" href="login">Ingresar</a>
                             {/if}
