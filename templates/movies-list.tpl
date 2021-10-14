@@ -1,22 +1,10 @@
-{include file='templates/header.tpl'  containerClass="container"}
+{include file='templates/header.tpl'}
 
-<div class="mt-5 mb-5 p-4">
-    <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-            <h1>{$title}</h1>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>Filtro</h4>
-                </div>
-                {if $userRole === 'ADMIN'}
-                <div class="col-md-6  d-flex justify-content-end">
-                    <a type="button" class="btn btn-success" href="agregar-pelicula">Agregar Pelicula</a>
-                </div>
-                {/if}
+<div class="container">
+    <div class="mt-5 mb-5 p-4">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <h1>{$title}</h1>
             </div>
         </div>
         <div class="row mt-3">
@@ -87,4 +75,5 @@
         </div>
     </div>
 </div>
+
 {include file='templates/footer.tpl'}

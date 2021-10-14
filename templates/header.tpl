@@ -43,4 +43,4 @@
         </nav>
     </header>
     
-    <div class="{$containerClass}">
+    {* <div class="{$containerClass}"> *}

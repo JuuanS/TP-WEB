@@ -7,7 +7,7 @@ class MoviesModel
 
     public function __construct()
     {
-        $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=localhost:3307;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
     }
 
     function getAllMovies()
@@ -22,8 +22,8 @@ class MoviesModel
     {
         $query = $this->db->prepare('SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName FROM movies m JOIN categories c ON m.category_id = c.id WHERE m.id = ?');
         $query->execute([$movieID]);
-        $movie = $query->fetchAll(PDO::FETCH_OBJ);
-        return $movie[0];
+        $movie = $query->fetch(PDO::FETCH_OBJ);
+        return $movie;
     }
 
     function getMoviesByFilter($title, $category)
