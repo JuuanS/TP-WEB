@@ -38,11 +38,14 @@
                             <a class="nav-link active" aria-current="page" href="">Peliculas</a>
                         </li>
                         
-                        <li class="nav-item ms-auto">
+                        <li class="nav-item ms-auto  d-flex justify-content-center align-items-center">
                              {if isset($smarty.session.USER_ID)} <!-- $_SESSION['USER_ID'] -->
-                                <a class="nav-link" href="logout">({$smarty.session.USER_EMAIL}) Logout</a>
+                             <div>
+                             {$smarty.session.USER_EMAIL}
+                             </div>
+                             <a class="nav-link btn btn-primary text-white ms-3" href="logout">Logout</a>
                             {else}
-                                <a class="nav-link" href="login">Ingresar</a>
+                                <a class="nav-link btn btn-primary text-white" href="login">Ingresar</a>
                             {/if}
                         </li>
                     </ul>
@@ -51,4 +54,4 @@
         </nav>
     </header>
     
-    <div class="container">
+    <div class="{$containerClass}">

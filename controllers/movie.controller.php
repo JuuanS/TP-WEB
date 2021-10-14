@@ -26,7 +26,6 @@ class MovieController
         $this->viewDetails = new MovieDetailsView();
         $this->viewForm = new MovieFormView();
         $this->authHelper = new AuthHelper();
-        $this->authHelper->checkLoggedIn();
     }
 
     function redirectToMovies()

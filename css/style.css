@@ -1,9 +1,33 @@
+@font-face {
+    font-family: Inter;
+    src: url(../assets/font/Inter.ttf);
+}
+
 body {
     background-color: var(--bs-gray-200);
+    font-family: Inter, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+    font-family: Inter, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.login-container {
+    width: 35%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .container {
     background-color: var(--bs-white);
+    border-radius: 0.5rem;
+    box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+}
+
+.card {
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
 }
 
 .description-container {
@@ -25,5 +49,5 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 40px;
+    margin: 0px 40px 40px 40px;
 }
