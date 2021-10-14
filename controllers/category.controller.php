@@ -24,25 +24,24 @@ class CategoryController {
     function addCategory()
     {
         $categoryName = $_REQUEST['category'];
-
         if (!empty($title)) {
             $this->categoryModel->insertCategory($categoryName);
             $this->redirectToCategories();
         } else {
-            //MOSTRAR ERROR
+            //$this->categoryView->showFormCategory("Mensaje Error");
         }
     }
 
     function deleteCategory($categoryID)
     {
-        //VALIDAR QUE NO ESTE ASOCIADA A NINGUNA PELICULA
-        // $queryMovies = $this->db->prepare('SELECT COUNT(*) FROM movies WHERE category_id = ?');
-        // $queryMovies->execute([$categoryID]);
-        // $asociatedMovies = $queryMovies->fetch(PDO::FETCH_OBJ);
-        // if ($asociatedMovies === 0) {
-
-        $this->categoryModel->deleteCategory($categoryID);
-        $this->redirectToCategories();
+        $movies[] = $this->movieModel->getMoviesByFilter(null, $categoryID);
+        if (!$movies) {
+            $this->categoryModel->deleteCategory($categoryID);
+            $this->redirectToCategories();
+        } else {
+            //$this->categoryView->showFormCategory("Mensaje Error");
+        }
+       
     }
 
     function updateCategory($categoryID)
