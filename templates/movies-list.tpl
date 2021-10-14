@@ -1,6 +1,6 @@
-{include file='templates/header.tpl'}
+{include file='templates/header.tpl'  containerClass="container"}
 
-<div class="mt-5 p-4">
+<div class="mt-5 mb-5 p-4">
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
             <h1>{$title}</h1>
