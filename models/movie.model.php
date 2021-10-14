@@ -1,6 +1,6 @@
 <?php
 
-class MoviesModel
+class MovieModel
 {
 
     private $db;
