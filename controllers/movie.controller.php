@@ -25,7 +25,6 @@ class MovieController {
         $this->viewForm = new MovieFormView();
         //$this->authHelper = new AuthHelper();
 
-         // barrera que este loguead
          //$this->authHelper->checkLoggedIn();
     }
 
@@ -70,7 +69,7 @@ class MovieController {
 
         $this->movieModel->insertMovie($title, $description, $categoryID);
         
-        header("Location: " . BASE_URL); 
+        header("Location: " . BASE_URL . "/peliculas"); 
     }
 
     function deleteMovies($movieID) {
@@ -85,6 +84,6 @@ class MovieController {
 
         $this->movieModel->updateMovie($movieID, $title, $description, $categoryID);
         
-        header("Location: " . BASE_URL);
+        header("Location: " . BASE_URL . "/peliculas");
     }
 }
