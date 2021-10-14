@@ -22,10 +22,10 @@ class AuthController {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
             $email = $_POST['email'];
-            $password = $_POST['password'];
             $user = $this->model->getUser($email);
+            $hashedPassword = md5($_POST['password']);
 
-            if ($user && ($password == $user->password)) {
+            if ($user && ($hashedPassword == $user->password)) {
                 $this->authHelper->login($user);
                 header("Location: " . BASE_URL);
             } else {

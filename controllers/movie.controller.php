@@ -72,7 +72,8 @@ class MovieController
             $this->movieModel->insertMovie($title, $description, $categoryID);
             $this->redirectToMovies();
         } else {
-            //MOSTRAR ERROR
+            $categories = $this->categoryModel->getAllCategories();
+            $this->movieView->showMovieForm(null, $categories, 'create', 'Error Creando Pelicula');
         }
     }
 
