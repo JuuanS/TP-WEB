@@ -19,13 +19,14 @@ class MoviesView
         $this->smarty->display('templates/movies-list.tpl');
     }
 
-    function showMovieForm($movie, $categories, $mode)
+    function showMovieForm($movie, $categories, $mode, $error = null)
     {
         $fromTitle = $mode === 'create' ? 'Agregar Pelicula' : 'Editar Pelicula - ' . $movie->title;
         $this->smarty->assign('title', $fromTitle);
         $this->smarty->assign('mode', $mode);
         $this->smarty->assign('movie', $movie);
         $this->smarty->assign('categories', $categories);
+        $this->smarty->assign('error', $error);
         $this->smarty->display('templates/movie-form.tpl');
     }
 

@@ -26,7 +26,7 @@ class MovieModel
         return $movie;
     }
 
-    function getMoviesByFilter($title, $category)
+    function getMoviesByFilter($title, $categoryID)
     {
         $sql = 'SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName FROM movies m JOIN categories c ON m.category_id = c.id';
         $conditions = [];
@@ -37,9 +37,9 @@ class MovieModel
             $parameters[] = '%' . $title . "%";
         }
 
-        if (!empty($category)) {
+        if (!empty($categoryID)) {
             $conditions[] = 'm.category_id = ?';
-            $parameters[] = $category;
+            $parameters[] = $categoryID;
         }
 
         if ($conditions) {
