@@ -62,6 +62,7 @@ switch ($params[0]) {
         $movieController->updateMovies($params[1]);
         break;
     default:
-        echo '404 - Página no encontrada';
+        $smarty = new Smarty();
+        $smarty->display('templates/not-found.tpl');
         break;
 }

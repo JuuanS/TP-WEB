@@ -51,3 +51,27 @@ html {
     align-items: center;
     margin: 0px 40px 40px 40px;
 }
+
+.vertical-line {
+    border-left: 2px solid var(--bs-gray);
+    height: 50px;
+}
+
+.not-found {
+    height: 90vh;
+    /* background-color: var(--bs-gray-200); */
+}
+
+.not-found h1 {
+    font-size: 3rem;
+    padding-right: 0.3rem;
+}
+
+.not-found h2 {
+    font-size: 2rem;
+    padding-left: 0.3rem;
+}
+
+.border-right {
+    border-right: 2px solid var(--bs-gray);
+}
