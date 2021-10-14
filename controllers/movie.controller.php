@@ -3,28 +3,20 @@
 require_once 'models/movie.model.php';
 require_once 'models/category.model.php';
 require_once 'views/movie.view.php';
-require_once 'views/movie-form.view.php';
-require_once 'views/movie-details.view.php';
 require_once 'helpers/auth.helper.php';
 
 class MovieController
 {
     private $movieModel;
     private $categoryModel;
-
-    private $view;
-    private $viewDetails;
-    private $viewForm;
-
+    private $movieView;
     private $authHelper;
 
     public function __construct()
     {
         $this->movieModel = new MoviesModel();
         $this->categoryModel = new CategoriesModel();
-        $this->view = new MoviesView();
-        $this->viewDetails = new MovieDetailsView();
-        $this->viewForm = new MovieFormView();
+        $this->movieView = new MoviesView();
         $this->authHelper = new AuthHelper();
     }
 
@@ -37,7 +29,7 @@ class MovieController
     {
         $movies = $this->movieModel->getAllMovies();
         $categories = $this->categoryModel->getAllCategories();
-        $this->view->showMovies($movies, $categories);
+        $this->movieView->showMovies($movies, $categories);
     }
 
     public function showMoviesByFilter()
@@ -46,20 +38,20 @@ class MovieController
         $category = $_REQUEST['category'];
         $movies = $this->movieModel->getMoviesByFilter($title, $category);
         $categories = $this->categoryModel->getAllCategories();
-        $this->view->showMovies($movies, $categories);
+        $this->movieView->showMovies($movies, $categories);
     }
 
     public function showMovieDetails($movieID)
     {
         $movie = $this->movieModel->getMovieByID($movieID);
-        $this->viewDetails->showMovieDetails($movie);
+        $this->movieView->showMovieDetails($movie);
     }
 
     public function showAddMovie()
     {
         $categories = $this->categoryModel->getAllCategories();
         $mode = 'create';
-        $this->viewForm->showMovieForm(null, $categories, $mode);
+        $this->movieView->showMovieForm(null, $categories, $mode);
     }
 
     public function showEditMovie($movieID)
@@ -67,7 +59,7 @@ class MovieController
         $movie = $this->movieModel->getMovieByID($movieID);
         $categories = $this->categoryModel->getAllCategories();
         $mode = 'edit';
-        $this->viewForm->showMovieForm($movie, $categories, $mode);
+        $this->movieView->showMovieForm($movie, $categories, $mode);
     }
 
     function addMovies()
@@ -75,8 +67,13 @@ class MovieController
         $title = $_REQUEST['title'];
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
-        $this->movieModel->insertMovie($title, $description, $categoryID);
-        $this->redirectToMovies();
+
+        if (!empty($title) && !empty($description) && !empty($categoryID)) {
+            $this->movieModel->insertMovie($title, $description, $categoryID);
+            $this->redirectToMovies();
+        } else {
+            //MOSTRAR ERROR
+        }
     }
 
     function deleteMovies($movieID)

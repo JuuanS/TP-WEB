@@ -61,6 +61,10 @@ switch ($params[0]) {
         $movieController = new MovieController();
         $movieController->updateMovies($params[1]);
         break;
+
+    case 'categorias':
+        echo 'CATEGORIAS';
+        break;
     default:
         $smarty = new Smarty();
         $smarty->display('templates/not-found.tpl');
