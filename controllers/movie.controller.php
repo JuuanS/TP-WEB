@@ -7,7 +7,8 @@ require_once 'views/movie-form.view.php';
 require_once 'views/movie-details.view.php';
 require_once 'helpers/auth.helper.php';
 
-class MovieController {
+class MovieController
+{
     private $movieModel;
     private $categoryModel;
 
@@ -17,7 +18,8 @@ class MovieController {
 
     private $authHelper;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->movieModel = new MoviesModel();
         $this->categoryModel = new CategoriesModel();
         $this->view = new MoviesView();
@@ -26,67 +28,69 @@ class MovieController {
         $this->authHelper = new AuthHelper();
     }
 
-    function redirectToMovies() {
+    function redirectToMovies()
+    {
         header("Location: " . BASE_URL . "peliculas");
     }
 
-    public function showMovies() {
+    public function showMovies()
+    {
         $movies = $this->movieModel->getAllMovies();
         $categories = $this->categoryModel->getAllCategories();
         $this->view->showMovies($movies, $categories);
     }
 
-    // public function showMoviesByFilter() {
-    //     $title = $_REQUEST['title'];
-    //     $category = $_REQUEST['category'];
+    public function showMoviesByFilter()
+    {
+        $title = $_REQUEST['title'];
+        $category = $_REQUEST['category'];
+        $movies = $this->movieModel->getMoviesByFilter($title, $category);
+        $categories = $this->categoryModel->getAllCategories();
+        $this->view->showMovies($movies, $categories);
+    }
 
-    //     $movies = $this->movieModel->getMoviesByFilter($title, $category !== 'null' ? $category : null);
-    //     $categories = $this->categoryModel->getAllCategories();
-
-    //     $this->view->showMovies($movies, $categories);
-    // }
-
-    public function showMovieDetails($movieID) {
+    public function showMovieDetails($movieID)
+    {
         $movie = $this->movieModel->getMovieByID($movieID);
         $this->viewDetails->showMovieDetails($movie);
     }
 
-    public function showAddMovie() {
+    public function showAddMovie()
+    {
         $categories = $this->categoryModel->getAllCategories();
         $mode = 'create';
         $this->viewForm->showMovieForm(null, $categories, $mode);
     }
 
-    public function showEditMovie($movieID) {
+    public function showEditMovie($movieID)
+    {
         $movie = $this->movieModel->getMovieByID($movieID);
         $categories = $this->categoryModel->getAllCategories();
         $mode = 'edit';
         $this->viewForm->showMovieForm($movie, $categories, $mode);
     }
 
-    function addMovies() {
+    function addMovies()
+    {
         $title = $_REQUEST['title'];
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
-
         $this->movieModel->insertMovie($title, $description, $categoryID);
-        
         $this->redirectToMovies();
     }
 
-    function deleteMovies($movieID) {
+    function deleteMovies($movieID)
+    {
         $this->movieModel->deleteMovie($movieID);
-
         $this->redirectToMovies();
     }
 
-    function updateMovies($movieID){
+    function updateMovies($movieID)
+    {
         $title = $_REQUEST['title'];
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
-
         $this->movieModel->updateMovie($movieID, $title, $description, $categoryID);
-        
         $this->redirectToMovies();
     }
 }
