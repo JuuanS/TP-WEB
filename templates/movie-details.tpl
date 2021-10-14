@@ -18,9 +18,11 @@
             </div>
             <p>{$movie->description}</p>
         </div>
+        {if $userRole === "ADMIN"}
         <div class="col-md-2 d-flex align-items-start justify-content-end">
             <a type="button" class="btn btn-success" href="editar-pelicula/{$movie->movieID}">Editar</a>
         </div>
+        {/if}
     </div>
     <div class="row mt-4">
         <div class="col-md-12 d-flex justify-content-center">

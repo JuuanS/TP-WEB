@@ -12,9 +12,11 @@
                 <div class="col-md-6">
                     <h4>Filtro</h4>
                 </div>
+                {if $userRole === 'ADMIN'}
                 <div class="col-md-6  d-flex justify-content-end">
                     <a type="button" class="btn btn-success" href="agregar-pelicula">Agregar Pelicula</a>
                 </div>
+                {/if}
             </div>
             <form action="busqueda" method="GET">
                 <div class="row">
@@ -58,8 +60,9 @@
                         </div>
                         <div class="card-body d-flex justify-content-evenly align-items-end">
                             <a type="button" class="btn btn-primary" href="detalle/{$movie->movieID}">Ver Detalle</a>
-                            <!-- <button type="button" class="btn btn-primary">Primary</button>
-                            <button type="button" class="btn btn-danger">Danger</button> -->
+                            {if $userRole === 'ADMIN'}
+                            <a type="button" class="btn btn-danger" href="borrar/{$movie->movieID}">Eliminar</a>
+                            {/if}
                         </div>
                     </div>
                 </div>

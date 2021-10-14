@@ -18,16 +18,16 @@
                     <div class="form-group">
                         <label for="title">Titulo</label>
                         {if $mode === 'create'}
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Titulo">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Titulo" required>
                         {else}
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Titulo" value="{$movie->title}">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Titulo" value="{$movie->title}" required>
                         {/if}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="category">Categoria</label>
-                        <select id="category" name="category" class="form-control">
+                        <select id="category" name="category" class="form-control" required>
                             <option value="null">Seleccione</option>
                             {if $mode === 'create'}
                             {foreach from=$categories item=$category}
@@ -48,10 +48,10 @@
                         <label for="description">Descripción</label>
                         {if $mode === 'create'}
                         <textarea id="description" name="description" class="form-control" rows="4"
-                            placeholder="Descripción" maxlength="1000"></textarea>
+                            placeholder="Descripción" maxlength="1000" required></textarea>
                         {else}
                         <textarea id="description" name="description" class="form-control" rows="4"
-                            placeholder="Descripción" maxlength="1000">{$movie->description}</textarea>
+                            placeholder="Descripción" maxlength="1000" required>{$movie->description}</textarea>
                         {/if}
                     </div>
                 </div>
