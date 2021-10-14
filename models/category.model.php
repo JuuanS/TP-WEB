@@ -1,0 +1,22 @@
+<?php
+
+class CategoriesModel {
+
+    private $db;
+
+    public function __construct() {
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_movietracker;charset=utf8', 'root', '');
+    }
+
+    function getAllCategories() {
+        $query = $this->db->prepare('SELECT * FROM categories');
+        $query->execute();
+        $categories = $query->fetchAll(PDO::FETCH_OBJ);
+        return $categories;
+    }
+
+    function getCategoryByID($categoryID) {    
+        $query = $this->db->prepare('SELECT * FROM categories WHERE categoryID = ?');
+        $query->execute([$id]);
+    }
+}
