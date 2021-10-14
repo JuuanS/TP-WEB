@@ -14,8 +14,8 @@ class MovieController
 
     public function __construct()
     {
-        $this->movieModel = new MoviesModel();
-        $this->categoryModel = new CategoriesModel();
+        $this->movieModel = new MovieModel();
+        $this->categoryModel = new CategoryModel();
         $this->movieView = new MoviesView();
         $this->authHelper = new AuthHelper();
     }

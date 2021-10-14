@@ -18,7 +18,7 @@ class CategoryController {
 
     function redirectToCategories()
     {
-        header("Location: " . BASE_URL . "peliculas");
+        header("Location: " . BASE_URL . "categorias");
     }
 
     function addCategory()
