@@ -12,7 +12,7 @@ class MoviesView {
         $this->smarty->assign('title', 'Listado de Peliculas');
         $this->smarty->assign('movies', $movies);
         $this->smarty->assign('categories', $categories);
-        $this->smarty->display('templates/movies-list.html');
+        $this->smarty->display('templates/movies-list.tpl');
     }
 
 }

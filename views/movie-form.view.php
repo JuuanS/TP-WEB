@@ -23,7 +23,7 @@ class MovieFormView {
         $this->smarty->assign('mode', $mode);
         $this->smarty->assign('movie', $movie);        
         $this->smarty->assign('categories', $categories);
-        $this->smarty->display('templates/movie-form.html');
+        $this->smarty->display('templates/movie-form.tpl');
     }
 
 }

@@ -11,7 +11,7 @@ class MovieDetailsView {
     function showMovieDetails($movie) {
         $this->smarty->assign('title', 'Detalle');
         $this->smarty->assign('movie', $movie);
-        $this->smarty->display('templates/movie-details.html');
+        $this->smarty->display('templates/movie-details.tpl');
     }
 
 }
