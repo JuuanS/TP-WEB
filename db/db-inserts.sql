@@ -4,8 +4,8 @@ INSERT INTO `roles` (`id`, `role_name`) VALUES
 (1,'ADMIN'), (2,'USER');
 
 INSERT INTO `users` (`user_name`,`email`,`password`, `role_id`) VALUES 
-('user', 'usuarioprueba@email.com', '123456', 2),
-('admin', 'adminprueba@email.com', '123456', 1);
+('user', 'usuarioprueba@email.com', 'e10adc3949ba59abbe56e057f20f883e', 2),
+('admin', 'adminprueba@email.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
 
 INSERT INTO `movie_status` (`id`,`status_name`) VALUES 
 (0, 'NO VISTA'),
