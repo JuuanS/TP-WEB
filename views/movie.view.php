@@ -20,7 +20,7 @@ class MoviesView {
     function showMovies($movies, $categories) {
         $this->smarty->assign('title', 'Listado de Peliculas');
         $this->smarty->assign('movies', $movies);
-        $this->smarty->assign('userRole', $_SESSION["USER_ROLE"]);
+        $this->smarty->assign('userRole', $_SESSION ? $_SESSION["USER_ROLE"] : 'USER');
         $this->smarty->assign('categories', $categories);
         $this->smarty->display('templates/movies-list.tpl');
     }

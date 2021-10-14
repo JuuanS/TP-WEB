@@ -1,9 +1,20 @@
-{include file='templates/header.tpl'}
-<div class="container">
-    <div class="mt-5 p-4">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <h1>{$title}</h1>
+{include file='templates/header.tpl' containerClass="container"}
+
+<div class="mt-5 mb-5 p-4">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <h1>{$title}</h1>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <img class="card-img-top" src="{BASE_URL}/assets/images/default_image.png" alt="Default Image">
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex justify-content-start align-items-baseline">
+                <h2>{$movie->title}</h2>
+                <div class="pt-3 mx-3 vertical-separator"></div>
+                <h4>{$movie->categoryName}</h4>
             </div>
         </div>
         <div class="row mt-3">

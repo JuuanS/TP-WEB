@@ -1,10 +1,9 @@
-{include file='templates/header.tpl'}
-<div class="container">
-    <div class="mt-5 p-4">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <h1>{$title}</h1>
-            </div>
+{include file='templates/header.tpl'  containerClass="container"}
+
+<div class="mt-5 mb-5 p-4">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <h1>{$title}</h1>
         </div>
         <div class="row"></div>
         {if $mode === 'create'}
