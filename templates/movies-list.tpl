@@ -19,7 +19,7 @@
                         </div>
                     {/if}
                 </div>
-                <form action="busqueda" method="GET">
+                <form action="busqueda" method="POST">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
