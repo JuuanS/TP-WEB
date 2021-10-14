@@ -19,3 +19,11 @@ body {
 .vertical-separator {
     border: 1px solid var(--bs-body-color);
 }
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+}

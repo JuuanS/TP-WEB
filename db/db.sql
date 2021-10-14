@@ -61,19 +61,4 @@ CREATE TABLE `user_library` (
   CONSTRAINT `MOVIE_STATUS_FK` FOREIGN KEY (`movie_status_id`) REFERENCES `movie_status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
-INSERT INTO `roles` (`id`, `role_name`) VALUES 
-(1,'ADMIN'), (2,'USER');
-
-INSERT INTO `users` (`user_name`,`email`,`password`) VALUES 
-('user', 'usuarioprueba@email.com', '123456'),
-('admin', 'adminprueba@email.com', '123456');
-
-INSERT INTO `movie_status` (`id`,`status_name`) VALUES 
-(0, 'NO VISTA'),
-(1, 'VISTA'),
-(2, 'PARA VER'),
-(3, 'ABANDONADA'),
-(4, 'NO VOY A VERLA');
-
 COMMIT;

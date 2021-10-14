@@ -7,8 +7,7 @@ define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . d
 
 if (!empty($_GET['action'])){
     $action = $_GET['action'];
-}
-else {
+} else {
     $action = 'peliculas';
 }
 $params = explode('/', $action);
@@ -21,6 +20,10 @@ switch ($params[0]) {
     case 'verify': 
         $authController = new AuthController();
         $authController->login();
+        break;
+    case 'logout': 
+        $authController = new AuthController();
+        $authController->logout();
         break;
     case 'logout': 
         $authController = new AuthController();

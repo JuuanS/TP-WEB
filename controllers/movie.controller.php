@@ -23,9 +23,13 @@ class MovieController {
         $this->view = new MoviesView();
         $this->viewDetails = new MovieDetailsView();
         $this->viewForm = new MovieFormView();
-        //$this->authHelper = new AuthHelper();
+        $this->authHelper = new AuthHelper();
 
-         //$this->authHelper->checkLoggedIn();
+         $this->authHelper->checkLoggedIn();
+    }
+
+    function redirectToMovies() {
+        header("Location: " . BASE_URL . "peliculas");
     }
 
     public function showMovies() {
@@ -69,12 +73,13 @@ class MovieController {
 
         $this->movieModel->insertMovie($title, $description, $categoryID);
         
-        header("Location: " . BASE_URL . "/peliculas"); 
+        $this->redirectToMovies();
     }
 
     function deleteMovies($movieID) {
         $this->movieModel->deleteMovie($movieID);
-        header("Location: " . BASE_URL);
+
+        $this->redirectToMovies();
     }
 
     function updateMovies($movieID){
@@ -84,6 +89,6 @@ class MovieController {
 
         $this->movieModel->updateMovie($movieID, $title, $description, $categoryID);
         
-        header("Location: " . BASE_URL . "/peliculas");
+        $this->redirectToMovies();
     }
 }
