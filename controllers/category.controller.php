@@ -34,12 +34,14 @@ class CategoryController
 
     public function showAddCategory()
     {
+        $this->authHelper->checkAdminPermission();
         $mode = 'create';
         $this->categoryView->showCategoryForm(null, $mode);
     }
 
     public function showEditCategory($categoryID)
     {
+        $this->authHelper->checkAdminPermission();
         $category = $this->categoryModel->getCategoryByID($categoryID);
         $mode = 'edit';
         $this->categoryView->showCategoryForm($category, $mode);
