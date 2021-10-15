@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Inter;
+    src: url(../assets/font/Inter.ttf);
+}
+
+body {
+    background-color: var(--bs-gray-200);
+    font-family: Inter, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+    font-family: Inter, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.login-container {
+    width: 35%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    background-color: var(--bs-white);
+    border-radius: 0.5rem;
+    box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+}
+
+.card {
+    box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+}
+
+.description-container {
+    max-height: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.vertical-separator {
+    border: 1px solid var(--bs-body-color);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 40px 40px 40px;
+}
+
+.vertical-line {
+    border-left: 2px solid var(--bs-gray);
+    height: 50px;
+}
+
+.not-found {
+    height: 90vh;
+    /* background-color: var(--bs-gray-200); */
+}
+
+.not-found h1 {
+    font-size: 3rem;
+    padding-right: 0.3rem;
+}
+
+.not-found h2 {
+    font-size: 2rem;
+    padding-left: 0.3rem;
+}
+
+.border-right {
+    border-right: 2px solid var(--bs-gray);
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
