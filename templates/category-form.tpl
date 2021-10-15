@@ -29,6 +29,13 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                {if $error}
+                                <div class="alert alert-danger mt-3">
+                                    {$error}
+                                </div>
+                                {/if}
+                            </div>
                             <div class="row mt-4">
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <a type="button" class="btn btn-danger me-2" href="categorias">Cancelar</a>

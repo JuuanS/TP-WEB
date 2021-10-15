@@ -33,6 +33,13 @@
                         {/foreach}
                     </ul>
                 </div>
+                <div class="row">
+                    {if $error}
+                        <div class="alert alert-danger mt-3">
+                            {$error}
+                        </div>
+                    {/if}
+                </div>
             </div>
         </div>
     </div>

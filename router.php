@@ -1,5 +1,6 @@
 <?php
 require_once 'controllers/movie.controller.php';
+require_once 'controllers/not-found.controller.php';
 require_once 'controllers/category.controller.php';
 require_once 'controllers/auth.controller.php';
 
@@ -90,7 +91,7 @@ switch ($params[0]) {
         $categoriesController->deleteCategory($params[1]);
         break;
     default:
-        $smarty = new Smarty();
-        $smarty->display('templates/not-found.tpl');
+        $notFoundController = new NotFound();
+        $notFoundController->showNotFound();
         break;
 }
