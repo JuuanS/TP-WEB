@@ -49,6 +49,7 @@ class MovieController
 
     public function showAddMovie()
     {
+        $this->authHelper->checkAdminPermission();
         $categories = $this->categoryModel->getAllCategories();
         $mode = 'create';
         $this->movieView->showMovieForm(null, $categories, $mode);
@@ -56,6 +57,7 @@ class MovieController
 
     public function showEditMovie($movieID)
     {
+        $this->authHelper->checkAdminPermission();
         $movie = $this->movieModel->getMovieByID($movieID);
         $categories = $this->categoryModel->getAllCategories();
         $mode = 'edit';

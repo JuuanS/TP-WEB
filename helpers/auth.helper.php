@@ -20,6 +20,12 @@ class AuthHelper {
         }
     }
 
+    public function checkAdminPermission() {
+        if (!$_SESSION || (!empty($_SESSION['USER_ROLE']) && $_SESSION['USER_ROLE'] !== 'ADMIN')) {
+            header("Location: " . BASE_URL);
+        }
+    }
+
     function logout() {
         session_destroy();
         header("Location: " . BASE_URL . 'login');

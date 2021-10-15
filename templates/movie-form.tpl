@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label for="category">Categoria</label>
                                     <select id="category" name="category" class="form-control" required>
-                                        <option value="null">Seleccione</option>
+                                        <option value="">Seleccione</option>
                                         {if $mode === 'create'}
                                             {foreach from=$categories item=$category}
                                                 <option value="{$category->categoryID}">{$category->categoryName}</option>
@@ -62,11 +62,13 @@
                             </div>
                         </div>
                     </div>
-                    {if $error}
-                        <div class="alert alert-danger mt-3">
-                            {$error}
-                        </div>
-                    {/if}
+                    <div class="row">
+                        {if $error}
+                            <div class="alert alert-danger mt-3">
+                                {$error}
+                            </div>
+                        {/if}
+                    </div>
                     <div class="row mt-4">
                         <div class="col-md-12 d-flex justify-content-center">
                             <a type="button" class="btn btn-danger me-2" href="peliculas">Cancelar</a>

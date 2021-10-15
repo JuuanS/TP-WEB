@@ -3,9 +3,9 @@
 class CategoryModel
 {
     private $db;
-    public function __construct()
-    {
-        $this->db = new PDO('mysql:host=localhost:3307;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
+
+    public function __construct() {
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_movietracker;charset=utf8', 'root', '');
     }
 
     function getAllCategories()
@@ -18,7 +18,7 @@ class CategoryModel
 
     function getCategoryByID($categoryID)
     {
-        $query = $this->db->prepare('SELECT c.id as categoryID, c.category_name as categoryName FROM categories WHERE categoryID = ?');
+        $query = $this->db->prepare('SELECT c.id as categoryID, c.category_name as categoryName FROM categories c WHERE c.id = ?');
         $query->execute([$categoryID]);
         $category = $query->fetch(PDO::FETCH_OBJ);
         return $category;
@@ -26,7 +26,6 @@ class CategoryModel
 
     function insertCategory($categoryName)
     {
-        //VALIDAR QUE NO SEA EMPTY
         $query = $this->db->prepare('INSERT INTO categories(category_name) VALUES (?)');
         $query->execute([$categoryName]);
         return $this->db->lastInsertId();
@@ -41,6 +40,6 @@ class CategoryModel
     function updateCategory($categoryID, $categoryName)
     {
         $query = $this->db->prepare('UPDATE categories SET category_name = ? WHERE id = ?');
-        $query->execute([$categoryID, $categoryName]);
+        $query->execute([$categoryName, $categoryID]);
     }
 }

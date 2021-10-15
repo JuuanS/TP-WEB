@@ -75,3 +75,7 @@ html {
 .border-right {
     border-right: 2px solid var(--bs-gray);
 }
+
+.navbar-brand {
+    font-weight: 600;
+}
