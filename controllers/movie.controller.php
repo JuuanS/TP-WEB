@@ -20,9 +20,13 @@ class MovieController
         $this->authHelper = new AuthHelper();
     }
 
-    function redirectToMovies()
+    function redirectToMovies($afterDelete)
     {
-        header("Location: " . BASE_URL . "peliculas");
+        if ($afterDelete) {
+            header("Location: " . BASE_URL . "peliculas?m=1");
+        } else {
+            header("Location: " . BASE_URL . "peliculas");
+        }
     }
 
     public function showMovies()
@@ -72,7 +76,7 @@ class MovieController
 
         if (!empty($title) && !empty($description) && !empty($categoryID)) {
             $this->movieModel->insertMovie($title, $description, $categoryID);
-            $this->redirectToMovies();
+            $this->redirectToMovies(false);
         } else {
             $categories = $this->categoryModel->getAllCategories();
             $this->movieView->showMovieForm(null, $categories, 'create', 'Error Creando Pelicula');
@@ -82,7 +86,7 @@ class MovieController
     function deleteMovies($movieID)
     {
         $this->movieModel->deleteMovie($movieID);
-        $this->redirectToMovies();
+        $this->redirectToMovies(true);
     }
 
     function updateMovies($movieID)
@@ -91,6 +95,6 @@ class MovieController
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
         $this->movieModel->updateMovie($movieID, $title, $description, $categoryID);
-        $this->redirectToMovies();
+        $this->redirectToMovies(false);
     }
 }

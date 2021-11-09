@@ -79,3 +79,28 @@ html {
 .navbar-brand {
     font-weight: 600;
 }
+
+nav a.active {
+    border-bottom: 1px solid black;
+}
+
+.card-img-top {
+    object-fit: cover;
+}
+
+div ul.nav-tabs .nav-link.active {
+    border-color: #adb5bd #adb5bd #fff;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #adb5bd;
+}
+
+.tab-pane {
+    border-right: 1px solid #adb5bd;
+    border-left: 1px solid #adb5bd;
+    border-bottom: 1px solid #adb5bd;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding: 20px;
+}

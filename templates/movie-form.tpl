@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='templates/header.tpl' activeLink='peliculas'}
 
 <div class="container">
     <div class="mt-5 mb-5 p-4">

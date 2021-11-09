@@ -37,6 +37,7 @@ CREATE TABLE `movies` (
   `movie_description` text DEFAULT NULL,
   `movie_release_date` timestamp NOT NULL,
   `category_id` int(11) NOT NULL,
+  `image_url` varchar(1000) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `CATEGORIE_FK` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
