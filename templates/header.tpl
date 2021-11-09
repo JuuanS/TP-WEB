@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="">Movie Tracker</a>
+                <a class="navbar-brand" href="peliculas">Movie Tracker</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,11 +24,11 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="">Peliculas</a>
+                            <a class="nav-link {if $activeLink eq 'peliculas'}active{/if}" aria-current="page" href="peliculas">Peliculas</a>
                         </li>
                         {if isset($smarty.session.USER_ID) && $smarty.session.USER_ROLE === 'ADMIN'}
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="categorias">Categorias</a>
+                                <a class="nav-link {if $activeLink eq 'categorias'}active{/if}" aria-current="page" href="categorias">Categorias</a>
                             </li>
                         {/if}
                     

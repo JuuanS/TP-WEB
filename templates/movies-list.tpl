@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='templates/header.tpl' activeLink='peliculas'}
 
 <div class="container">
     <div class="mt-5 mb-5 p-4">
@@ -15,7 +15,7 @@
                     </div>
                     {if $userRole === 'ADMIN'}
                         <div class="col-md-6  d-flex justify-content-end">
-                            <a type="button" class="btn btn-success" href="agregar-pelicula">Agregar Pelicula</a>
+                            <a type="button" class="btn btn-outline-success" href="agregar-pelicula">Agregar Pelicula</a>
                         </div>
                     {/if}
                 </div>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="col-md-3 d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary">Buscar</button>
+                            <button type="submit" class="btn btn-outline-primary">Buscar</button>
                         </div>
                     </div>
                 </form>
@@ -51,8 +51,12 @@
                     {foreach from=$movies item=$movie}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center my-3">
                             <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="{BASE_URL}/assets/images/default_image.png"
-                                    alt="Default Image">
+                                <img class="card-img-top"
+                                    src="{if $movie->imageUrl !== ''}{$movie->imageUrl}{else}{BASE_URL}/assets/images/default_image.png{/if}"
+                                    alt="Default Image"
+                                    width="286px"
+                                    height="286px"
+                                >
                                 <div class="card-body">
                                     <h5 class="card-title">{$movie->title}</h5>
                                     <h6 class="card-title">{$movie->categoryName}</h6>
@@ -61,10 +65,11 @@
                                     </div>
                                 </div>
                                 <div class="card-body d-flex justify-content-evenly align-items-end">
-                                    <a type="button" class="btn btn-primary" href="detalle/{$movie->movieID}">Ver
+                                    <a type="button" class="btn btn-outline-dark" href="detalle/{$movie->movieID}">Ver
                                         Detalle</a>
                                     {if $userRole === 'ADMIN'}
-                                        <a type="button" class="btn btn-danger" href="borrar/{$movie->movieID}">Eliminar</a>
+                                        <a type="button" class="btn btn-outline-danger"
+                                            href="borrar/{$movie->movieID}">Eliminar</a>
                                     {/if}
                                 </div>
                             </div>

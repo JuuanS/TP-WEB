@@ -12,7 +12,7 @@ class MovieModel
 
     function getAllMovies()
     {
-        $query = $this->db->prepare('SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName FROM movies m JOIN categories c ON m.category_id = c.id');
+        $query = $this->db->prepare('SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName, m.image_url as imageUrl FROM movies m JOIN categories c ON m.category_id = c.id');
         $query->execute();
         $movies = $query->fetchAll(PDO::FETCH_OBJ);
         return $movies;
@@ -20,7 +20,7 @@ class MovieModel
 
     function getMovieByID($movieID)
     {
-        $query = $this->db->prepare('SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName FROM movies m JOIN categories c ON m.category_id = c.id WHERE m.id = ?');
+        $query = $this->db->prepare('SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName, m.image_url as imageUrl FROM movies m JOIN categories c ON m.category_id = c.id WHERE m.id = ?');
         $query->execute([$movieID]);
         $movie = $query->fetch(PDO::FETCH_OBJ);
         return $movie;
@@ -28,7 +28,7 @@ class MovieModel
 
     function getMoviesByFilter($title, $categoryID)
     {
-        $sql = 'SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName FROM movies m JOIN categories c ON m.category_id = c.id';
+        $sql = 'SELECT m.id as movieID,  m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName, m.image_url as imageUrl FROM movies m JOIN categories c ON m.category_id = c.id';
         $conditions = [];
         $parameters = [];
 
