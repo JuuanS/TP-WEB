@@ -24,11 +24,14 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex w-100">
                         <li class="nav-item">
-                            <a class="nav-link {if $activeLink eq 'peliculas'}active{/if}" aria-current="page" href="peliculas">Peliculas</a>
+                            <a class="nav-link {if isset($activeLink) && $activeLink eq 'peliculas'}active{/if}" aria-current="page" href="peliculas">Peliculas</a>
                         </li>
-                        {if isset($smarty.session.USER_ID) && $smarty.session.USER_ROLE === 'ADMIN'}
+                        {if isset($smarty.session.USER_ROLE) && $smarty.session.USER_ROLE === 'ADMIN'}
                             <li class="nav-item">
-                                <a class="nav-link {if $activeLink eq 'categorias'}active{/if}" aria-current="page" href="categorias">Categorias</a>
+                                <a class="nav-link {if isset($activeLink) && $activeLink eq 'categorias'}active{/if}" aria-current="page" href="categorias">Categorias</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {if isset($activeLink) && $activeLink eq 'usuarios'}active{/if}" aria-current="page" href="usuarios">Usuarios</a>
                             </li>
                         {/if}
                     

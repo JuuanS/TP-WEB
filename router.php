@@ -3,6 +3,7 @@ require_once 'controllers/movie.controller.php';
 require_once 'controllers/not-found.controller.php';
 require_once 'controllers/category.controller.php';
 require_once 'controllers/auth.controller.php';
+require_once 'controllers/user.controller.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 define('LOGIN', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/login');
@@ -89,6 +90,31 @@ switch ($params[0]) {
     case 'borrar-categoria':
         $categoriesController = new CategoryController();
         $categoriesController->deleteCategory($params[1]);
+        break;
+        //Usuarios
+    case 'registrar':
+        $usersController = new UserController();
+        $usersController->showRegisterForm();
+        break;
+    case 'registrar-usuario':
+        $usersController = new UserController();
+        $usersController->registerUser();
+        break;
+    case 'usuarios':
+        $usersController = new UserController();
+        $usersController->showUsers();
+        break;
+    case 'borrar-usuario':
+        $usersController = new UserController();
+        $usersController->deleteUser($params[1]);
+        break;
+    case 'dar-permiso':
+        $usersController = new UserController();
+        $usersController->updateUserPermission($params[1], true);
+        break;
+    case 'quitar-permiso':
+        $usersController = new UserController();
+        $usersController->updateUserPermission($params[1], false);
         break;
     default:
         $notFoundController = new NotFound();
