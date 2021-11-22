@@ -21,6 +21,10 @@
                             placeholder="Constraseña">
                     </div>
 
+                    <div class="form-group mb-4">
+                    ¿No tienes una cuenta?<a class="ms-2" href="registrar">Registrarse</a>
+                    </div>
+
                     {if $error}
                         <div class="alert alert-danger mt-3">
                             {$error}

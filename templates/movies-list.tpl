@@ -65,7 +65,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body d-flex justify-content-evenly align-items-end">
-                                    <a type="button" class="btn btn-outline-dark" href="detalle/{$movie->movieID}">Ver
+                                    <a type="button" class="btn btn-outline-dark" href="pelicula/{$movie->movieID}">Ver
                                         Detalle</a>
                                     {if $userRole === 'ADMIN'}
                                         <a type="button" class="btn btn-outline-danger"

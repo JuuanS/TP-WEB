@@ -104,3 +104,8 @@ div ul.nav-tabs .nav-link.active {
     border-bottom-right-radius: 0.5rem;
     padding: 20px;
 }
+
+span.admin {
+    font-style: italic;
+    color: red;
+}
