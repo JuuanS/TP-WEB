@@ -7,13 +7,6 @@ INSERT INTO `users` (`user_name`,`email`,`password`, `role_id`) VALUES
 ('user', 'usuarioprueba@email.com', 'e10adc3949ba59abbe56e057f20f883e', 2),
 ('admin', 'adminprueba@email.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
 
-INSERT INTO `movie_status` (`id`,`status_name`) VALUES 
-(0, 'NO VISTA'),
-(1, 'VISTA'),
-(2, 'PARA VER'),
-(3, 'ABANDONADA'),
-(4, 'NO VOY A VERLA');
-
 INSERT INTO `categories` (`category_name`) VALUES
 ('Acción'),
 ('Aventuras'),

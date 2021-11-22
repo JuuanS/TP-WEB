@@ -21,7 +21,6 @@ function addEvents() {
             clearInterval(checkExist);
         }
     }, 100);
-
 }
 
 function getUsers() {

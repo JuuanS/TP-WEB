@@ -103,9 +103,25 @@ div ul.nav-tabs .nav-link.active {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     padding: 20px;
+    max-height: 400px;
+    overflow: auto;
 }
 
 span.admin {
     font-style: italic;
     color: red;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.feedback-box {
+    border-right: 1px solid #adb5bd;
+    border-left: 1px solid #adb5bd;
+    border-bottom: 1px solid #adb5bd;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top: 1px solid #adb5bd;
+    padding: 20px;
 }

@@ -42,24 +42,16 @@ CREATE TABLE `movies` (
   CONSTRAINT `CATEGORIE_FK` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `movie_status` (
-  `id` int(11) NOT NULL,
-  `status_name` varchar(50) NOT NULL,
-  `status_description` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `MOVIE_STATUS_NAME_UK` (`status_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `user_library` (
+CREATE TABLE `movie_comments` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `movie_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `comment` text DEFAULT NULL,
-  `rate_amount` float DEFAULT NULL,
-  `movie_status_id` int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`movie_id`,`user_id`),
+  `vote` int DEFAULT NULL,
+  `comment_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
   CONSTRAINT `MOVIE_FK` FOREIGN KEY (`movie_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `USER_FK` FOREIGN KEY (`user_id`) REFERENCES `movies` (`id`),
-  CONSTRAINT `MOVIE_STATUS_FK` FOREIGN KEY (`movie_status_id`) REFERENCES `movie_status` (`id`)
+  CONSTRAINT `USER_FK` FOREIGN KEY (`user_id`) REFERENCES `movies` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 COMMIT;
