@@ -54,7 +54,7 @@ class MovieCommentModel
     function createComment($commentText, $vote, $movieID, $userID)
     {
         $query = $this->db->prepare('INSERT INTO movie_comments(movie_id, user_id, comment, vote) VALUES (?, ?, ?, ?)');
-        $query->execute([$movieID, $userID, $commentText, $vote]);
+        $query->execute([intval($movieID), intval($userID), $commentText, intval($vote)]);
         return $this->db->lastInsertId();
     }
 
