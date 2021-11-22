@@ -1,4 +1,5 @@
 <?php
+
 require_once 'models/user.model.php';
 require_once("./api/ApiController.php");
 require_once("./api/JSONView.php");
@@ -42,15 +43,27 @@ class UsersApiController
 
     public function registerUser($params = [])
     {
-        $user = $this->apiHelper->getData();
-        $userID = $this->userModel->createUser($user->userName, $user->email, $user->password);
-        $newUser = $this->userModel->getUserByID($userID);
-        if ($newUser) {
-            $this->view->response($newUser, 200);
-            $this->authHelper->login($user);
-            header("Location: " . BASE_URL);
+        $body = $this->apiHelper->getData();
+        $email = $body->email;
+        $userName = $body->userName;
+        $password = $body->password;
+
+        $existingEmail = $this->userModel->getUserByEmail($email);
+        $existingUserName = $this->userModel->getUserByUserName($userName);
+
+        if ($existingUserName) {
+            $this->view->response(new ApiError("El nombre de usuario ingresado ya se encuentra registrado"), 403);
+        } else if ($existingEmail) {
+            $this->view->response(new ApiError("El email ingresado ya se encuentra registrado"), 403);
         } else {
-            $this->view->response("Error al registar el usuario", 500);
+            $userID = $this->userModel->createUser($userName, $email, $password);
+            $newUser = $this->userModel->getUserByID($userID);
+            if ($newUser) {
+                $this->view->response($newUser, 200);
+                $this->authHelper->login($newUser);
+            } else {
+                $this->view->response("Error al registar el usuario", 500);
+            }
         }
     }
 
@@ -68,5 +81,18 @@ class UsersApiController
         } else {
             $this->view->response("No se encontro el usuario con id=$userID", 404);
         }
+    }
+}
+
+class ApiError
+{
+    function __construct(
+        public $errorMessage,
+    ) {
+    }
+
+    function getErrorMessage()
+    {
+        return $this->errorMessage;
     }
 }
