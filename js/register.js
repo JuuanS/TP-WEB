@@ -15,6 +15,10 @@ let app = new Vue({
     }
 });
 
+/**
+ * 
+ * @param e 
+ */
 function registerUser(e) {
     e.preventDefault();
     let data = {
