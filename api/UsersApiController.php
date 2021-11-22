@@ -56,7 +56,8 @@ class UsersApiController
         } else if ($existingEmail) {
             $this->view->response(new ApiError("El email ingresado ya se encuentra registrado"), 403);
         } else {
-            $userID = $this->userModel->createUser($userName, $email, $password);
+            $hashedPassword = md5($password);
+            $userID = $this->userModel->createUser($userName, $email, $hashedPassword);
             $newUser = $this->userModel->getUserByID($userID);
             if ($newUser) {
                 $this->view->response($newUser, 200);
