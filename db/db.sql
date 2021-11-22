@@ -50,8 +50,8 @@ CREATE TABLE `movie_comments` (
   `vote` int DEFAULT NULL,
   `comment_date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  CONSTRAINT `MOVIE_FK` FOREIGN KEY (`movie_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `USER_FK` FOREIGN KEY (`user_id`) REFERENCES `movies` (`id`)
+  CONSTRAINT `MOVIE_FK` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`),
+  CONSTRAINT `USER_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 COMMIT;
