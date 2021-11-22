@@ -32,6 +32,10 @@ function addEvents() {
     }, 100);
 }
 
+/**
+ * 
+ * @param e
+ */
 function handleDeleteComment(e) {
     e.preventDefault();
     const eventID = e.target.id;
@@ -79,6 +83,10 @@ function getComments() {
         });
 };
 
+/**
+ * 
+ * @param e
+ */
 function showAddComment(e) {
     e.preventDefault();
     app.showAddForm = true;
@@ -88,11 +96,19 @@ function showAddComment(e) {
     }, 200);
 }
 
+/**
+ * 
+ * @param e
+ */
 function hideAddComment(e) {
     e.preventDefault();
     app.showAddForm = false;
 }
 
+/**
+ * 
+ * @param e
+ */
 function confirmAddComment(e) {
     e.preventDefault();
     let data = {
@@ -112,6 +128,10 @@ function confirmAddComment(e) {
     }).catch(error => console.log(error));
 }
 
+/**
+ * 
+ * @param commentID
+ */
 function deleteComment(commentID) {
     const url = API_URL + '/' + commentID
     fetch(url, {
@@ -137,6 +157,10 @@ function sortVotes(e) {
     getComments();
 }
 
+/**
+ * 
+ * @param e 
+ */
 function sortDate(e) {
     e.preventDefault();
     if (!app.orderDate) {
@@ -151,6 +175,10 @@ function sortDate(e) {
     getComments();
 }
 
+/**
+ * 
+ * @param e 
+ */
 function searchByVote(e) {
     e.preventDefault();
     const vote = document.querySelector("select[name=votes-search]").value;
