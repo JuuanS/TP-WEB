@@ -125,3 +125,7 @@ span.admin {
     border-top: 1px solid #adb5bd;
     padding: 20px;
 }
+
+#votes-search {
+    width: 150px;
+}
