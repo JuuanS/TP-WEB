@@ -23,6 +23,8 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
+                                <button id="search-by-vote" type="button"
+                                    class="btn btn-sm btn-outline-primary ms-4">Buscar</button>
                             </div>
                             <div>
                                 {literal}

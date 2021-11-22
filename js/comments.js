@@ -13,6 +13,7 @@ let app = new Vue({
         movieID: null,
         orderDate: null, // null - 'asc' - 'desc'
         orderVotes: null, // null - 'asc' - 'desc'
+        searchVote: null,
         searchResponse: false,
     }
 });
@@ -43,16 +44,25 @@ function handleDeleteComment(e) {
 function getComments() {
     app.searchResponse = false;
     let url = API_URL + '/' + movieID;
-    if (app.orderDate) {
+    if (app.searchVote) {
+        url += '?searchVote=' + app.searchVote;
+        if (app.orderDate) {
+            url += '&sortDate=' + app.orderDate;
+            if (app.orderVotes) {
+                url += '&sortVote=' + app.orderVotes;
+            }
+        } else if (app.orderVotes) {
+            url += '&sortVote=' + app.orderVotes;
+        }
+    } else if (app.orderDate) {
         url += '?sortDate=' + app.orderDate;
         if (app.orderVotes) {
             url += '&sortVote=' + app.orderVotes;
         }
-    } else {
-        if (app.orderVotes) {
-            url += '?sortVote=' + app.orderVotes;
-        }
+    } else if (app.orderVotes) {
+        url += '?sortVote=' + app.orderVotes;
     }
+
     fetch(url)
         .then(response => response.json())
         .then(comments => {
@@ -61,6 +71,7 @@ function getComments() {
             document.querySelector('#show-add-comment').addEventListener('click', showAddComment);
             document.querySelector('#sort-votes').addEventListener('click', sortVotes);
             document.querySelector('#sort-date').addEventListener('click', sortDate);
+            document.querySelector('#search-by-vote').addEventListener('click', searchByVote);
             addEvents();
         }).catch(error => {
             console.log(error);
@@ -136,6 +147,17 @@ function sortDate(e) {
         } else {
             app.orderDate = null;
         }
+    }
+    getComments();
+}
+
+function searchByVote(e) {
+    e.preventDefault();
+    const vote = document.querySelector("select[name=votes-search]").value;
+    if (vote.length > 0) {
+        app.searchVote = Number(vote);
+    } else {
+        app.searchVote = null;
     }
     getComments();
 }
