@@ -1,18 +1,15 @@
 <?php
 require_once 'libs/Router.php';
+require_once("./api/UsersApiController.php");
+
+define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 
 $router = new Router();
 
-//Login
-
-//Movies
-
-//Categories
-
 //Users
-$router->addRoute('usuarios', 'GET', 'UserController', 'getUsers');
-$router->addRoute('usuarios', 'POST', 'UserController', 'registerUser');
-$router->addRoute('usuarios', 'PUT', 'UserController', 'updateUserPermissons');
+$router->addRoute('usuarios', 'GET', 'UsersApiController', 'getUsers');
+$router->addRoute('usuarios', 'POST', 'UsersApiController', 'registerUser');
+$router->addRoute('usuarios/:ID', 'PUT', 'UsersApiController', 'updateUser');
+$router->addRoute('usuarios/:ID', 'DELETE', 'UsersApiController', 'deleteUser');
 
-
-$router->route($_GET["resources"], $_SERVER['REQUEST_METHOD']);
+$router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']); 

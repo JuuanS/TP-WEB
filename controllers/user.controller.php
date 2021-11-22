@@ -1,7 +1,6 @@
 <?php
 
 require_once 'models/user.model.php';
-require_once 'models/role.model.php';
 require_once 'views/user.view.php';
 require_once 'views/register.view.php';
 require_once 'helpers/auth.helper.php';
@@ -9,7 +8,6 @@ require_once 'helpers/auth.helper.php';
 class UserController
 {
     private $userModel;
-    private $roleModel;
     private $userView;
     private $registerView;
     private $authHelper;
@@ -18,7 +16,6 @@ class UserController
     {
         $this->userModel = new UserModel();
         $this->userView = new UserView();
-        $this->roleModel = new RoleModel();
         $this->registerView = new RegisterView();
         $this->authHelper = new AuthHelper();
     }
@@ -26,9 +23,7 @@ class UserController
     public function showUsers()
     {
         $this->authHelper->checkAdminPermission();
-        $users = $this->userModel->getUsers();
-        $roles = $this->roleModel->getRoles();
-        $this->userView->showUsers($users, $roles);
+        $this->userView->showUsers();
     }
 
     public function showRegisterForm()
@@ -55,34 +50,5 @@ class UserController
             $this->authHelper->login($user);
             header("Location: " . BASE_URL . "peliculas");
         }
-    }
-
-    public function updateUserPermission($userID, $adminPermission)
-    {
-        $this->authHelper->checkAdminPermission();
-
-        if (empty($userID)) {
-            $this->user->showError('Ocurrio un error al actualizar el permiso, por favor intentelo mas tarde.');
-        }
-
-        $roleID = 1;
-        if (!$adminPermission) {
-            $roleID = 2;
-        }
-
-        $this->userModel->updateUserPermissions($userID, $roleID);
-        $this->showUsers();
-        header("Location: " . BASE_URL . "peliculas");
-    }
-
-    public function deleteUser($userID)
-    {
-        $this->authHelper->checkAdminPermission();
-
-        if (empty($userID)) {
-            // $this->userView->showError('Campos requeridos faltantes.');
-        }
-        $this->userModel->deleteUser($userID);
-        $this->showUsers();
     }
 };

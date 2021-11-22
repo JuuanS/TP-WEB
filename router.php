@@ -50,7 +50,7 @@ switch ($params[0]) {
         $movieController = new MovieController();
         $movieController->showEditMovie($params[1]);
         break;
-    case 'detalle':
+    case 'pelicula':
         $movieController = new MovieController();
         $movieController->showMovieDetails($params[1]);
         break;
@@ -71,7 +71,7 @@ switch ($params[0]) {
         $categoriesController = new CategoryController();
         $categoriesController->showCategories();
         break;
-    case 'editar-categoria':
+    case 'categoria':
         $categoriesController = new CategoryController();
         $categoriesController->showEditCategory($params[1]);
         break;
@@ -103,18 +103,6 @@ switch ($params[0]) {
     case 'usuarios':
         $usersController = new UserController();
         $usersController->showUsers();
-        break;
-    case 'borrar-usuario':
-        $usersController = new UserController();
-        $usersController->deleteUser($params[1]);
-        break;
-    case 'dar-permiso':
-        $usersController = new UserController();
-        $usersController->updateUserPermission($params[1], true);
-        break;
-    case 'quitar-permiso':
-        $usersController = new UserController();
-        $usersController->updateUserPermission($params[1], false);
         break;
     default:
         $notFoundController = new NotFound();

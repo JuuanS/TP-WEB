@@ -23,7 +23,7 @@
                                 </div>
                                 <div>
                                     <a type="button" class="btn btn-success"
-                                        href="editar-categoria/{$category->categoryID}">Editar</a>
+                                        href="categoria/{$category->categoryID}">Editar</a>
                                     <a type="button" class="btn btn-danger ms-1"
                                         href="borrar-categoria/{$category->categoryID}">Eliminar</a>
                                 </div>

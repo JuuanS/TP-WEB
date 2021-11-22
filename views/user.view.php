@@ -10,14 +10,9 @@ class UserView
         $this->smarty = new Smarty();
     }
 
-    function showUsers($users, $roles)
+    function showUsers()
     {
-        $this->smarty->assign('title', 'Listado de Usuarios');
-        $this->smarty->assign('users', $users);
-        $this->smarty->assign('roles', $roles);
-        $this->smarty->assign('error', '');
-        $this->smarty->assign('userRole', $_SESSION ? $_SESSION["USER_ROLE"] : 'USER');
-        $this->smarty->display('templates/user-list.tpl');
+        $this->smarty->display('templates/user-list-csr.tpl');
     }
 
     function showError($error)
