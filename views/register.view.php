@@ -12,7 +12,6 @@ class RegisterView
 
     function showRegister()
     {
-        $this->smarty->assign('title', 'Registro de Usuario');
-        $this->smarty->display('templates/register-form.tpl');
+        $this->smarty->display('templates/register-form-csr.tpl');
     }
 }

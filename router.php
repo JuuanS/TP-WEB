@@ -96,10 +96,6 @@ switch ($params[0]) {
         $usersController = new UserController();
         $usersController->showRegisterForm();
         break;
-    case 'registrar-usuario':
-        $usersController = new UserController();
-        $usersController->registerUser();
-        break;
     case 'usuarios':
         $usersController = new UserController();
         $usersController->showUsers();

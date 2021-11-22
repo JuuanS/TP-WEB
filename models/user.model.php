@@ -17,6 +17,14 @@ class UserModel
         return $user;
     }
 
+    function getUserByUserName($userName)
+    {
+        $query = $this->db->prepare('SELECT u.id as userID, u.user_name as userName, u.email, u.password, r.id as roleID, r.role_name as roleName FROM users u JOIN roles r ON u.role_id = r.id WHERE u.user_name = ?');
+        $query->execute([$userName]);
+        $user = $query->fetch(PDO::FETCH_OBJ);
+        return $user;
+    }
+
     function getUsers($loggedUserID)
     {
         $query = $this->db->prepare('SELECT u.id as userID, u.user_name as userName, u.email, u.password, r.id as roleID, r.role_name as roleName, (CASE WHEN u.id = ? THEN true ELSE false END) as isLoggedUser FROM users u JOIN roles r ON u.role_id = r.id');
