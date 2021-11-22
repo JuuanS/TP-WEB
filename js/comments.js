@@ -22,9 +22,7 @@ function addEvents() {
     var checkExist = setInterval(function () {
         let buttons = document.querySelectorAll('.btn-delete');
         buttons.forEach(button => {
-            button.addEventListener("click", (evento) => {
-                handleDeleteComment(evento);
-            });
+            button.addEventListener("click", handleDeleteComment);
         });
         if (buttons.length > 0) {
             clearInterval(checkExist);
