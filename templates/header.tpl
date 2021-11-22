@@ -52,5 +52,3 @@
             </div>
         </nav>
     </header>
-
-{* <div class="{$containerClass}"> *}

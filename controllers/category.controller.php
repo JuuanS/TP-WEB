@@ -17,8 +17,6 @@ class CategoryController
         $this->categoryView = new CategoryView();
         $this->movieModel = new MovieModel();
         $this->authHelper = new AuthHelper();
-
-        $this->authHelper->checkLoggedIn();
     }
 
     function redirectToCategories()
@@ -28,6 +26,7 @@ class CategoryController
 
     public function showCategories()
     {
+        $this->authHelper->checkAdminPermission();
         $categories = $this->categoryModel->getAllCategories();
         $this->categoryView->showCategories($categories);
     }
@@ -49,6 +48,7 @@ class CategoryController
 
     function addCategory()
     {
+        $this->authHelper->checkAdminPermission();
         $categoryName = $_REQUEST['categoryName'];
 
         if (!empty($categoryName)) {
@@ -61,6 +61,7 @@ class CategoryController
 
     function deleteCategory($categoryID)
     {
+        $this->authHelper->checkAdminPermission();
         $movies = $this->movieModel->getMoviesByFilter(null, $categoryID);
         if (count($movies) === 0) {
             $this->categoryModel->deleteCategory($categoryID);
@@ -73,6 +74,7 @@ class CategoryController
 
     function updateCategory($categoryID)
     {
+        $this->authHelper->checkAdminPermission();
         $categoryName = $_REQUEST['categoryName'];
         if (!empty($categoryName)) {
             $this->categoryModel->updateCategory($categoryID, $categoryName);

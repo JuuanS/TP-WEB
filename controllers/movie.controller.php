@@ -70,6 +70,7 @@ class MovieController
 
     function addMovies()
     {
+        $this->authHelper->checkAdminPermission();
         $title = $_REQUEST['title'];
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
@@ -85,12 +86,14 @@ class MovieController
 
     function deleteMovies($movieID)
     {
+        $this->authHelper->checkAdminPermission();
         $this->movieModel->deleteMovie($movieID);
         $this->redirectToMovies(true);
     }
 
     function updateMovies($movieID)
     {
+        $this->authHelper->checkAdminPermission();
         $title = $_REQUEST['title'];
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
