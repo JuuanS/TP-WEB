@@ -9,12 +9,28 @@ class MovieCommentModel
         $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
     }
 
-    function getComments($movieID)
+    function getComments($movieID, $sortVote, $sortDate)
     {
-        $query = $this->db->prepare('SELECT mc.comment, mc.vote, mc.id as commentID, mc.movie_id as movieID, u.user_name as userName FROM movie_comments mc JOIN users u ON mc.user_id = u.id WHERE mc.movie_id = ?');
+        $sql = 'SELECT mc.comment, mc.vote, mc.id as commentID, mc.movie_id as movieID, u.user_name as userName, mc.comment_date as commentDate FROM movie_comments mc JOIN users u ON mc.user_id = u.id WHERE mc.movie_id = ? ';
+        $conditions = [];
+
+        $parameters[] = $movieID;
+        if ($sortDate && !empty($sortDate)) {
+            $conditions[] = 'ORDER BY mc.comment_date ' . $sortDate;
+            if ($sortVote && !empty($sortVote)) {
+                $conditions[] = ', mc.vote ' . $sortVote;
+            }
+        } else {
+            if ($sortVote && !empty($sortVote)) {
+                $conditions[] = 'ORDER BY mc.vote ' . $sortVote;
+            }
+        }
+
+        $sql .= implode($conditions);
+        $query = $this->db->prepare($sql);
         $query->execute([$movieID]);
-        $categories = $query->fetchAll(PDO::FETCH_OBJ);
-        return $categories;
+        $comments = $query->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
     }
 
     function getCommentByID($commentID)

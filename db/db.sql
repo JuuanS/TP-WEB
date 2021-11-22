@@ -48,6 +48,7 @@ CREATE TABLE `movie_comments` (
   `user_id` bigint(20) NOT NULL,
   `comment` text DEFAULT NULL,
   `vote` int DEFAULT NULL,
+  `comment_date` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   CONSTRAINT `MOVIE_FK` FOREIGN KEY (`movie_id`) REFERENCES `users` (`id`),
   CONSTRAINT `USER_FK` FOREIGN KEY (`user_id`) REFERENCES `movies` (`id`)

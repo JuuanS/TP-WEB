@@ -27,9 +27,17 @@ class CommentsApiController
     public function getComments($params = [])
     {
         $movieID = $params[':ID'];
+        $sortVote = null;
+        $sortDate = null;
+        if (isset($_GET['sortVote'])) {
+            $sortVote = $_GET['sortVote'];
+        }
+        if (isset($_GET['sortDate'])) {
+            $sortDate = $_GET['sortDate'];
+        }
         $movie = $this->movieModel->getMovieByID($movieID);
         if ($movie) {
-            $comments = $this->commentModel->getComments($movieID);
+            $comments = $this->commentModel->getComments($movieID, $sortVote, $sortDate);
             $this->view->response($comments, 200);
         } else {
             $this->view->response("No se encontro la pelicula con id=$movieID", 404);

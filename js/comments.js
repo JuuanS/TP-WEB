@@ -11,6 +11,9 @@ let app = new Vue({
         error: null,
         showAddForm: false,
         movieID: null,
+        orderDate: null, // null - 'asc' - 'desc'
+        orderVotes: null, // null - 'asc' - 'desc'
+        searchResponse: false,
     }
 });
 
@@ -38,15 +41,31 @@ function handleDeleteComment(e) {
 }
 
 function getComments() {
-    app.comments = [];
-    const url = API_URL + '/' + movieID
+    app.searchResponse = false;
+    let url = API_URL + '/' + movieID;
+    if (app.orderDate) {
+        url += '?sortDate=' + app.orderDate;
+        if (app.orderVotes) {
+            url += '&sortVote=' + app.orderVotes;
+        }
+    } else {
+        if (app.orderVotes) {
+            url += '?sortVote=' + app.orderVotes;
+        }
+    }
     fetch(url)
         .then(response => response.json())
         .then(comments => {
             app.comments = comments;
+            app.searchResponse = true;
             document.querySelector('#show-add-comment').addEventListener('click', showAddComment);
+            document.querySelector('#sort-votes').addEventListener('click', sortVotes);
+            document.querySelector('#sort-date').addEventListener('click', sortDate);
             addEvents();
-        }).catch(error => console.log(error));
+        }).catch(error => {
+            console.log(error);
+            app.searchResponse = true;
+        });
 };
 
 function showAddComment(e) {
@@ -91,6 +110,34 @@ function deleteComment(commentID) {
             getComments();
         }
     }).catch(error => console.log(error));
+}
+
+function sortVotes(e) {
+    e.preventDefault();
+    if (!app.orderVotes) {
+        app.orderVotes = 'desc';
+    } else {
+        if (app.orderVotes === 'desc') {
+            app.orderVotes = 'asc'
+        } else {
+            app.orderVotes = null;
+        }
+    }
+    getComments();
+}
+
+function sortDate(e) {
+    e.preventDefault();
+    if (!app.orderDate) {
+        app.orderDate = 'desc';
+    } else {
+        if (app.orderDate === 'desc') {
+            app.orderDate = 'asc'
+        } else {
+            app.orderDate = null;
+        }
+    }
+    getComments();
 }
 
 getComments();
