@@ -22,36 +22,13 @@
                 <p>{$movie->description}</p>
             </div>
             {if $userRole === "ADMIN"}
-            <div class="col-md-2 d-flex align-items-start justify-content-end">
-                <a type="button" class="btn btn-success" href="editar-pelicula/{$movie->movieID}">Editar</a>
-            </div>
+                <div class="col-md-2 d-flex align-items-start justify-content-end">
+                    <a type="button" class="btn btn-success" href="editar-pelicula/{$movie->movieID}">Editar</a>
+                </div>
             {/if}
         </div>
-        <div class="row mt-3">
-            <div class="col-md-12">
-                <div class="feedback-box">
-                    <ul class="nav nav-tabs" id="movie-feedback-tabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="comments-tab" data-bs-toggle="tab"
-                                data-bs-target="#comments" type="button" role="tab" aria-controls="comments"
-                                aria-selected="true">Comentarios</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="votes-tab" data-bs-toggle="tab" data-bs-target="#votes"
-                                type="button" role="tab" aria-controls="votes" aria-selected="false">Votos</button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="comments" role="tabpanel"aria-labelledby="comments-tab">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, sed laudantium? Asperiores ex dicta officiis accusamus dolorum! Similique praesentium aut nulla quia minus totam, molestiae autem pariatur, incidunt accusantium ad?
-                        </div>
-                        <div class="tab-pane fade" id="votes" role="tabpanel" aria-labelledby="votes-tab">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {include file='templates/vue/movie-comments.tpl'}
+        <script src="js/comments.js"></script>
         <div class="row mt-4">
             <div class="col-md-12 d-flex justify-content-center">
                 <a type="button" class="btn btn-primary" href="peliculas">Volver</a>

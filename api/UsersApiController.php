@@ -3,19 +3,22 @@ require_once 'models/user.model.php';
 require_once("./api/ApiController.php");
 require_once("./api/JSONView.php");
 require_once 'helpers/auth.helper.php';
+require_once 'helpers/api.helper.php';
 
-class UsersApiController extends ApiController
+class UsersApiController
 {
 
     private $userModel;
     private $view;
     private $authHelper;
+    private $apiHelper;
 
     public function __construct()
     {
         $this->userModel = new UserModel();
         $this->view = new JSONView();
         $this->authHelper = new AuthHelper();
+        $this->apiHelper = new ApiHelper();
     }
 
     public function getUsers($params = null)
@@ -39,7 +42,7 @@ class UsersApiController extends ApiController
 
     public function registerUser($params = [])
     {
-        $user = $this->getData();
+        $user = $this->apiHelper->getData();
         $userID = $this->userModel->createUser($user->userName, $user->email, $user->password);
         $newUser = $this->userModel->getUserByID($userID);
         if ($newUser) {

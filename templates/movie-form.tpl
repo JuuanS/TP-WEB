@@ -38,8 +38,9 @@
                                         {else}
                                             {foreach from=$categories item=$category}
                                                 <option value="{$category->categoryID}"
-                                                    selected="{$category->categoryID === $movie->categoryID}">
-                                                    {$category->categoryName}</option>
+                                                    {if {$category->categoryID === $movie->categoryID}}selected{/if}>
+                                                    {$category->categoryName}
+                                                </option>
                                             {/foreach}
                                         {/if}
                                     </select>
@@ -71,7 +72,12 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12 d-flex justify-content-center">
-                            <a type="button" class="btn btn-danger me-2" href="peliculas">Cancelar</a>
+                            {if $mode === 'create'}
+                                <a type="button" class="btn btn-danger me-2" href="peliculas">Cancelar</a>
+                            {else}
+                                <a type="button" class="btn btn-danger me-2" href="pelicula/{$movie->movieID}">Cancelar</a>
+                            {/if}
+
                             {if $mode === 'create'}
                                 <button type="submit" class="btn btn-primary ms-2">Crear</button>
                             {else}

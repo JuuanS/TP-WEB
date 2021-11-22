@@ -14,7 +14,7 @@
                                 <li v-for="user in users"
                                     class="list-group-item d-flex justify-content-between align-items-center">
                                     <div>
-                                        {{user.userName}} - {{user.email}}
+                                        {{user.userName}} - {{user.email}} <span v-if="user.roleName === 'ADMIN'">|</span>
                                         <span class="admin" v-if="user.roleName === 'ADMIN'">{{user.roleName}}</span>
                                     </div>
                                     <div>
