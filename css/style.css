@@ -128,3 +128,28 @@ span.admin {
 #votes-search {
     width: 150px;
 }
+
+.disabled {
+    cursor: not-allowed;
+}
+
+.disabled:active {
+    pointer-events: none;
+}
+
+.btn-group-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.current-page-container #current-page {
+    font-size: 1.2em;
+}

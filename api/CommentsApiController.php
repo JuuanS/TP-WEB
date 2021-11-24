@@ -1,7 +1,6 @@
 <?php
 require_once 'models/movie-comment.model.php';
 require_once 'models/movie.model.php';
-require_once 'api/ApiController.php';
 require_once("./api/JSONView.php");
 require_once 'helpers/auth.helper.php';
 require_once 'helpers/api.helper.php';

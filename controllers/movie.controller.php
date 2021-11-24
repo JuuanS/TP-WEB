@@ -31,18 +31,8 @@ class MovieController
 
     public function showMovies()
     {
-        $movies = $this->movieModel->getAllMovies();
         $categories = $this->categoryModel->getAllCategories();
-        $this->movieView->showMovies($movies, $categories);
-    }
-
-    public function showMoviesByFilter()
-    {
-        $title = $_REQUEST['title'];
-        $category = $_REQUEST['category'];
-        $movies = $this->movieModel->getMoviesByFilter($title, $category);
-        $categories = $this->categoryModel->getAllCategories();
-        $this->movieView->showMovies($movies, $categories);
+        $this->movieView->showMovies($categories);
     }
 
     public function showMovieDetails($movieID)

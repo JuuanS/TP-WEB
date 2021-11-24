@@ -1,7 +1,7 @@
 <?php
 
 require_once 'models/user.model.php';
-require_once("./api/ApiController.php");
+require_once 'classes/ApiError.php';
 require_once("./api/JSONView.php");
 require_once 'helpers/auth.helper.php';
 require_once 'helpers/api.helper.php';
@@ -82,18 +82,5 @@ class UsersApiController
         } else {
             $this->view->response("No se encontro el usuario con id=$userID", 404);
         }
-    }
-}
-
-class ApiError
-{
-    function __construct(
-        public $errorMessage,
-    ) {
-    }
-
-    function getErrorMessage()
-    {
-        return $this->errorMessage;
     }
 }

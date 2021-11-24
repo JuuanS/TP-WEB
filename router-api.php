@@ -2,6 +2,7 @@
 require_once 'libs/Router.php';
 require_once("./api/UsersApiController.php");
 require_once("./api/CommentsApiController.php");
+require_once("./api/MoviesApiController.php");
 
 define("BASE_URL", 'http://' . $_SERVER["SERVER_NAME"] . ':' . $_SERVER["SERVER_PORT"] . dirname($_SERVER["PHP_SELF"]) . '/');
 
@@ -12,6 +13,9 @@ $router->addRoute('usuarios', 'GET', 'UsersApiController', 'getUsers');
 $router->addRoute('usuarios', 'POST', 'UsersApiController', 'registerUser');
 $router->addRoute('usuarios/:ID', 'PUT', 'UsersApiController', 'updateUser');
 $router->addRoute('usuarios/:ID', 'DELETE', 'UsersApiController', 'deleteUser');
+
+//Movies
+$router->addRoute('peliculas', 'GET', 'MoviesApiController', 'getMovies');
 
 //Comments
 $router->addRoute('comentarios/:ID', 'GET', 'CommentsApiController', 'getComments');
