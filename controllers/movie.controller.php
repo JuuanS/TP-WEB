@@ -107,7 +107,7 @@ class MovieController
             return null;
         }
 
-        $path = 'assets/images/covers';
+        $path = 'assets/images';
         $tmp_path = $_FILES['movie-cover']['tmp_name'];
         $name = $_FILES['movie-cover']['name'];
         $type = $_FILES['movie-cover']['type'];
