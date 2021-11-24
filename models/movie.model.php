@@ -66,9 +66,9 @@ class MovieModel
         $query->execute([$movieID]);
     }
 
-    function updateMovie($movieID, $title, $description, $categoryID)
+    function updateMovie($movieID, $title, $description, $categoryID, $path_img)
     {
-        $query = $this->db->prepare('UPDATE movies SET movie_title = ?, movie_description = ?, category_id = ? WHERE id = ?');
-        $query->execute([$title, $description, $categoryID, $movieID]);
+        $query = $this->db->prepare('UPDATE movies SET movie_title = ?, movie_description = ?, category_id = ?, image_url = ? WHERE id = ?');
+        $query->execute([$title, $description, $categoryID, $path_img, $movieID]);
     }
 }
