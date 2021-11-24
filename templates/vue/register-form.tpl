@@ -9,7 +9,7 @@
                 </div>
                 <div class="row mt-4 mb-4 d-flex justify-content-center align-items-center">
                     <div class="col-md-12">
-                        <form id="register-form" class="my-4" autocomplete="off">
+                        <form id="register-form" class="my-4" autocomplete="off" v-on:submit.prevent="handleRegisterUser">
                             <div class="row mt-3 d-flex justify-content-center">
                                 <div class="col-md-4">
                                     <div class="form-group">

@@ -15,39 +15,37 @@ let app = new Vue({
         orderVotes: null, // null - 'asc' - 'desc'
         searchVote: null,
         searchResponse: false,
+    },
+    methods: {
+        handleAddComment: function (event) {
+            event.preventDefault();
+            app.showAddForm = true;
+        },
+        handleCancelComment: function (event) {
+            event.preventDefault();
+            app.showAddForm = false;
+        },
+        handleConfirmComment: function (event) {
+            event.preventDefault();
+            confirmAddComment();
+        },
+        handleSortVotes: function (event) {
+            event.preventDefault();
+            sortVotes();
+        },
+        handleSortDate: function (event) {
+            event.preventDefault();
+            sortDate();
+        },
+        handleSearchByVotes: function (event) {
+            event.preventDefault();
+            searchByVote();
+        },
+        handleDeleteComment: function (id) {
+            deleteComment(id);
+        }
     }
 });
-
-function addEvents() {
-    if (document.querySelector('#show-add-comment')) {
-        document.querySelector('#show-add-comment').addEventListener('click', showAddComment);
-    }
-    document.querySelector('#sort-votes').addEventListener('click', sortVotes);
-    document.querySelector('#sort-date').addEventListener('click', sortDate);
-    document.querySelector('#search-by-vote').addEventListener('click', searchByVote);
-    var checkExist = setInterval(function () {
-        let buttons = document.querySelectorAll('.btn-delete');
-        buttons.forEach(button => {
-            button.addEventListener("click", handleDeleteComment);
-        });
-        if (buttons.length > 0) {
-            clearInterval(checkExist);
-        }
-    }, 100);
-}
-
-/**
- * 
- * @param e
- */
-function handleDeleteComment(e) {
-    e.preventDefault();
-    const eventID = e.target.id;
-    if (eventID && eventID.length > 0) {
-        const commentID = eventID.split('_')[1];
-        deleteComment(commentID);
-    }
-}
 
 function getComments() {
     app.searchResponse = false;
@@ -76,41 +74,13 @@ function getComments() {
         .then(comments => {
             app.comments = comments;
             app.searchResponse = true;
-            addEvents();
         }).catch(error => {
             app.searchResponse = true;
             console.log(error);
         });
 };
 
-/**
- * 
- * @param e
- */
-function showAddComment(e) {
-    e.preventDefault();
-    app.showAddForm = true;
-    setTimeout(() => {
-        document.querySelector('#hide-add-comment').addEventListener('click', hideAddComment);
-        document.querySelector('#form-add-comment').addEventListener('submit', confirmAddComment);
-    }, 200);
-}
-
-/**
- * 
- * @param e
- */
-function hideAddComment(e) {
-    e.preventDefault();
-    app.showAddForm = false;
-}
-
-/**
- * 
- * @param e
- */
-function confirmAddComment(e) {
-    e.preventDefault();
+function confirmAddComment() {
     let data = {
         comment: document.querySelector("textarea[name=comment]").value,
         vote: Number(document.querySelector("select[name=vote]").value),
@@ -143,8 +113,7 @@ function deleteComment(commentID) {
     }).catch(error => console.log(error));
 }
 
-function sortVotes(e) {
-    e.preventDefault();
+function sortVotes() {
     if (!app.orderVotes) {
         app.orderVotes = 'desc';
     } else {
@@ -157,12 +126,7 @@ function sortVotes(e) {
     getComments();
 }
 
-/**
- * 
- * @param e 
- */
-function sortDate(e) {
-    e.preventDefault();
+function sortDate() {
     if (!app.orderDate) {
         app.orderDate = 'desc';
     } else {
@@ -175,12 +139,7 @@ function sortDate(e) {
     getComments();
 }
 
-/**
- * 
- * @param e 
- */
-function searchByVote(e) {
-    e.preventDefault();
+function searchByVote() {
     const vote = document.querySelector("select[name=votes-search]").value;
     if (vote.length > 0) {
         app.searchVote = Number(vote);

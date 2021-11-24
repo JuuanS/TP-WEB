@@ -19,7 +19,9 @@
                             </div>
                         {/if}
                     </div>
-                    <form id="search-movie-form">
+                    {literal}
+                        <form id="search-movie-form" v-on:submit.prevent="handleOnSearch">
+                        {/literal}
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -95,13 +97,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="btn-group-pagination my-4">
-                    <button id="btn-pag-previous" class="btn btn-outline-dark me-3" type="button">Anterior</button>
-                    <div class="current-page-container">
-                        <span id="current-page"></span>
+                {literal}
+                    <div class="btn-group-pagination my-4">
+                        <button id="btn-pag-previous" class="btn btn-outline-dark me-3" type="button"
+                            v-on:click="handlePreviousPage">Anterior</button>
+                        <div class="current-page-container">
+                            <span id="current-page"></span>
+                        </div>
+                        <button id="btn-pag-next" class="btn btn-outline-dark ms-3" type="button"
+                            v-on:click="handleNextPage">Siguiente</button>
                     </div>
-                    <button id="btn-pag-next" class="btn btn-outline-dark ms-3" type="button">Siguiente</button>
-                </div>
+                {/literal}
             </div>
         </div>
     </div>

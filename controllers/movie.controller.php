@@ -88,7 +88,13 @@ class MovieController
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
 
+        $movie = $this->movieModel->getMovieByID($movieID);
+
         $path_img = $this->uploadMovieCover();
+
+        if (empty($path_img)) {
+            $path_img = $movie->imageUrl;
+        }
 
         $this->movieModel->updateMovie($movieID, $title, $description, $categoryID, $path_img);
         $this->redirectToMovies(false);

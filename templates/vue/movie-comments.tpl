@@ -23,12 +23,15 @@
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
-                                <button id="search-by-vote" type="button"
-                                    class="btn btn-sm btn-outline-primary ms-4">Buscar</button>
+                                {literal}
+                                    <button id="search-by-vote" type="button" class="btn btn-sm btn-outline-primary ms-4"
+                                        v-on:click="handleSearchByVotes">Buscar</button>
+                                {/literal}
                             </div>
                             <div>
                                 {literal}
-                                    <button id="sort-date" type="button" class="btn btn-sm btn-outline-dark me-1">
+                                    <button id="sort-date" type="button" class="btn btn-sm btn-outline-dark me-1"
+                                        v-on:click="handleSortDate">
                                         Ordenar por fecha
                                         <svg v-if="orderDate && orderDate === 'desc'" xmlns="http://www.w3.org/2000/svg"
                                             width="16" height="16" fill="currentColor" class="bi bi-sort-up"
@@ -43,7 +46,8 @@
                                                 d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
                                         </svg>
                                     </button>
-                                    <button id="sort-votes" type="button" class="btn btn-sm btn-outline-dark me-3">
+                                    <button id="sort-votes" type="button" class="btn btn-sm btn-outline-dark me-3"
+                                        v-on:click="handleSortVotes">
                                         Ordenar por votos
                                         <svg v-if="orderVotes && orderVotes === 'desc'" xmlns="http://www.w3.org/2000/svg"
                                             width="16" height="16" fill="currentColor" class="bi bi-sort-up"
@@ -61,8 +65,8 @@
                                 {/literal}
                                 {if isset($smarty.session.USER_ID)}
                                     {literal}
-                                        <button id="show-add-comment" type="button"
-                                            class="btn btn-sm btn-outline-success">Agregar
+                                        <button id="show-add-comment" type="button" class="btn btn-sm btn-outline-success"
+                                            v-on:click="handleAddComment">Agregar
                                             Comentario</button>
                                     {/literal}
                                 {/if}
@@ -84,7 +88,8 @@
                                             {if isset($smarty.session.USER_ROLE) && $smarty.session.USER_ROLE === 'ADMIN'}
                                                 {literal}
                                                     <button type="button" :id="'btn-delete_' + comment.commentID"
-                                                        class="btn btn-sm btn-outline-danger btn-delete">Eliminar</i></button>
+                                                        class="btn btn-sm btn-outline-danger btn-delete"
+                                                        v-on:click="handleDeleteComment(comment.commentID)">Eliminar</i></button>
                                                 {/literal}
                                             {/if}
                                         </div>
@@ -110,7 +115,7 @@
                 <div class="row">
                     <h5>Agregar Comentario</h5>
                 </div>
-                <form id="form-add-comment">
+                <form id="form-add-comment" v-on:submit.prevent="handleConfirmComment">
                     <div class="row mt-4">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -137,10 +142,12 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 d-flex justify-content-center mt-4">
-                            <button id="hide-add-comment" type="button"
-                                class="btn btn-outline-danger me-1">Cancelar</i></button>
-                            <button id="confirm-add-comment" type="submit"
-                                class="btn btn-outline-dark ms-1">Comentar</i></button>
+                            {literal}
+                                <button id="hide-add-comment" type="button" class="btn btn-outline-danger me-1"
+                                    v-on:click="handleCancelComment">Cancelar</i></button>
+                                <button id="confirm-add-comment" type="submit"
+                                    class="btn btn-outline-dark ms-1">Comentar</i></button>
+                            {/literal}
                         </div>
                     </div>
                 </form>

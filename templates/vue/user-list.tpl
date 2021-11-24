@@ -18,17 +18,19 @@
                                         <span class="admin" v-if="user.roleName === 'ADMIN'">{{user.roleName}}</span>
                                     </div>
                                     <div>
-                                        <button :id="'btn-add_' + user.userID" v-if="user.roleName !== 'ADMIN'" type="button"
-                                            class="btn btn-success">
+                                        <button :id="'btn-add_' + user.userID" v-if="user.roleName !== 'ADMIN'"
+                                            type="button" class="btn btn-success"
+                                            v-on:click="handleUpdatePermissions(user.userID)">
                                             Convertir en Admin
                                         </button>
                                         <button :id="'btn-remove_' + user.userID"
                                             v-if="user.isLoggedUser != 1 && user.roleName === 'ADMIN'" type="button"
-                                            class="btn btn-warning ms-1">
+                                            class="btn btn-warning ms-1" v-on:click="handleUpdatePermissions(user.userID)">
                                             Quitar permiso de Admin
                                         </button>
-                                        <button :id="'btn-delete_' + user.userID" v-if="user.isLoggedUser != 1" type="button"
-                                            class="btn btn-danger ms-1">
+                                        <button :id="'btn-delete_' + user.userID" v-if="user.isLoggedUser != 1"
+                                            type="button" class="btn btn-danger ms-1"
+                                            v-on:click="handleDeleteUser(user.userID)">
                                             Eliminar
                                         </button>
                                     </div>

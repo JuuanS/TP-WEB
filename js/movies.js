@@ -14,23 +14,36 @@ let app = new Vue({
         searchTitle: null,
         searchCategory: null,
         searchResponse: false,
+    },
+    methods: {
+        handleNextPage: function (event) {
+            event.preventDefault();
+            if (page < getMaxPage()) {
+                page += 1;
+                getMovies();
+            }
+        },
+        handlePreviousPage: function (event) {
+            event.preventDefault();
+            if (page > 1) {
+                page -= 1;
+                getMovies();
+            }
+        },
+        handleOnSearch: function (event) {
+            event.preventDefault();
+            searchByFilters();
+        }
     }
 });
 
-function addEvents() {
+function setButtonsReference() {
     setTimeout(() => {
         btnPreviousPage = document.querySelector('#btn-pag-previous');
-        btnPreviousPage.addEventListener('click', goToPreviousPage)
         btnNextPage = document.querySelector("#btn-pag-next");
-        btnNextPage.addEventListener('click', goToNextPage)
-        document.querySelector('#search-movie-form').addEventListener('submit', searchByFilters);
     }, 250);
 }
 
-/**
- * 
- * @returns 
- */
 function getMaxPage() {
     if (collectionSize !== 0) {
         return Math.ceil(collectionSize / app.pageSize);
@@ -38,7 +51,11 @@ function getMaxPage() {
     return 1;
 }
 
-function getMovies() {
+/**
+ * 
+ * @param referenceButtons false by default
+ */
+function getMovies(referenceButtons = false) {
     app.searchResponse = false;
 
     let url = API_URL + '?page=' + page + '&pageSize=' + app.pageSize;
@@ -57,29 +74,15 @@ function getMovies() {
             app.movies = json?.movies;
             collectionSize = json?.collectionSize;
             app.searchResponse = true;
-            addEvents();
+            if (referenceButtons) {
+                setButtonsReference();
+            }
             configPagination();
         }).catch(error => {
             app.searchResponse = true;
             console.log(error);
         });
 };
-
-function goToNextPage(e) {
-    e.preventDefault();
-    if (page < getMaxPage()) {
-        page += 1;
-        getMovies();
-    }
-}
-
-function goToPreviousPage(e) {
-    e.preventDefault();
-    if (page > 1) {
-        page -= 1;
-        getMovies();
-    }
-}
 
 function configPagination() {
     setTimeout(() => {
@@ -97,8 +100,7 @@ function configPagination() {
     }, 250);
 }
 
-function searchByFilters(e) {
-    e.preventDefault();
+function searchByFilters() {
     const title = document.querySelector("input[name=title]").value;
     const category = document.querySelector("select[name=category]").value;
     if (title.length > 0) {
@@ -115,4 +117,4 @@ function searchByFilters(e) {
     getMovies();
 }
 
-getMovies();
+getMovies(true);
