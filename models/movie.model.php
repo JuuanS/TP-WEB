@@ -15,12 +15,10 @@ class MovieModel
         $sql = 'SELECT m.id as movieID, m.movie_title as title, m.movie_description as description, c.id as categoryID, c.category_name as categoryName, m.image_url as imageUrl FROM movies m JOIN categories c ON m.category_id = c.id';
         $conditions = [];
         $titleParam = '';
-        $paramsCountLimit = 1;
 
         if (!empty($title)) {
             $conditions[] = 'm.movie_title LIKE :movieTitle';
             $titleParam = "%" . $title . "%";
-            $paramsCountLimit += 1;
         }
 
         if (!empty($category)) {
@@ -29,7 +27,6 @@ class MovieModel
             } else {
                 $conditions[] = 'm.category_id = :category';
             }
-            $paramsCountLimit += 1;
         }
 
         if ($conditions) {
