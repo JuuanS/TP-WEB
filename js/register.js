@@ -1,10 +1,6 @@
 "use strict"
 
 const API_URL = "api/usuarios";
-window.addEventListener('DOMContentLoaded', (e) => {
-    e.preventDefault();
-    document.querySelector('#register-form').addEventListener('submit', registerUser);
-});
 
 let app = new Vue({
     el: "#template-register-form",
@@ -12,15 +8,16 @@ let app = new Vue({
         title: 'Registro de Usuarios',
         comments: [],
         error: null,
+    },
+    methods: {
+        handleRegisterUser: function (event) {
+            event.preventDefault();
+            registerUser();
+        }
     }
 });
 
-/**
- * 
- * @param e 
- */
-function registerUser(e) {
-    e.preventDefault();
+function registerUser() {
     let data = {
         userName: document.querySelector("input[name=userName]").value,
         email: document.querySelector("input[name=email]").value,
