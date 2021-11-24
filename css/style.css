@@ -59,7 +59,6 @@ html {
 
 .not-found {
     height: 90vh;
-    /* background-color: var(--bs-gray-200); */
 }
 
 .not-found h1 {
@@ -164,4 +163,29 @@ span.admin {
 
 .img-cover-container .middle input[type="file"] {
     display: none;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+
+.disabled:active {
+    pointer-events: none;
+}
+
+.btn-group-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.current-page-container #current-page {
+    font-size: 1.2em;
 }

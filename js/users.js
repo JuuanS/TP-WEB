@@ -13,9 +13,7 @@ function addEvents() {
     var checkExist = setInterval(function () {
         let buttons = document.querySelectorAll('button[id]');
         buttons.forEach(button => {
-            button.addEventListener("click", (evento) => {
-                handleActionSelected(evento);
-            });
+            button.addEventListener("click", handleActionSelected);
         });
         if (buttons.length > 0) {
             clearInterval(checkExist);

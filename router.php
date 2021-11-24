@@ -38,10 +38,6 @@ switch ($params[0]) {
         $movieController = new MovieController();
         $movieController->showMovies();
         break;
-    case 'busqueda':
-        $movieController = new MovieController();
-        $movieController->showMoviesByFilter();
-        break;
     case 'agregar-pelicula':
         $movieController = new MovieController();
         $movieController->showAddMovie();

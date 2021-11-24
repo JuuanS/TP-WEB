@@ -19,12 +19,16 @@ let app = new Vue({
 });
 
 function addEvents() {
+    if (document.querySelector('#show-add-comment')) {
+        document.querySelector('#show-add-comment').addEventListener('click', showAddComment);
+    }
+    document.querySelector('#sort-votes').addEventListener('click', sortVotes);
+    document.querySelector('#sort-date').addEventListener('click', sortDate);
+    document.querySelector('#search-by-vote').addEventListener('click', searchByVote);
     var checkExist = setInterval(function () {
         let buttons = document.querySelectorAll('.btn-delete');
         buttons.forEach(button => {
-            button.addEventListener("click", (evento) => {
-                handleDeleteComment(evento);
-            });
+            button.addEventListener("click", handleDeleteComment);
         });
         if (buttons.length > 0) {
             clearInterval(checkExist);
@@ -72,14 +76,10 @@ function getComments() {
         .then(comments => {
             app.comments = comments;
             app.searchResponse = true;
-            document.querySelector('#show-add-comment').addEventListener('click', showAddComment);
-            document.querySelector('#sort-votes').addEventListener('click', sortVotes);
-            document.querySelector('#sort-date').addEventListener('click', sortDate);
-            document.querySelector('#search-by-vote').addEventListener('click', searchByVote);
             addEvents();
         }).catch(error => {
-            console.log(error);
             app.searchResponse = true;
+            console.log(error);
         });
 };
 
