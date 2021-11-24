@@ -7,7 +7,7 @@ class MovieModel
 
     public function __construct()
     {
-        $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=localhost:3307;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
     }
 
     function getAllMovies()
@@ -66,9 +66,9 @@ class MovieModel
         $query->execute([$movieID]);
     }
 
-    function updateMovie($movieID, $title, $description, $categoryID)
+    function updateMovie($movieID, $title, $description, $categoryID, $path_img)
     {
-        $query = $this->db->prepare('UPDATE movies SET movie_title = ?, movie_description = ?, category_id = ? WHERE id = ?');
-        $query->execute([$title, $description, $categoryID, $movieID]);
+        $query = $this->db->prepare('UPDATE movies SET movie_title = ?, movie_description = ?, category_id = ?, image_url = ? WHERE id = ?');
+        $query->execute([$title, $description, $categoryID, $path_img, $movieID]);
     }
 }

@@ -131,14 +131,14 @@ span.admin {
 }
 .img-cover-container {
     position: relative;
-     width: 50%;
+    /* width: 50%; */
 }
 
 .img-cover-container img {
     opacity: 1;
-    display: block;
-    width: 100%;
-    height: auto;
+    /* display: block; */
+    /* width: 100%; */
+    /* height: auto; */
     transition: 0.5s ease;
     backface-visibility: hidden;
 }

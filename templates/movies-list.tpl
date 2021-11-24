@@ -52,11 +52,8 @@
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center my-3">
                             <div class="card" style="width: 18rem;">
                                 <img class="card-img-top"
-                                    src="{if $movie->imageUrl !== ''}{$movie->imageUrl}{else}{BASE_URL}/assets/images/default_image.png{/if}"
-                                    alt="Default Image"
-                                    width="286px"
-                                    height="286px"
-                                >
+                                    src="{if !empty($movie->imageUrl)}{$movie->imageUrl}{else}{BASE_URL}/assets/images/default_image.png{/if}"
+                                    alt="Default Image" width="286px" height="286px">
                                 <div class="card-body">
                                     <h5 class="card-title">{$movie->title}</h5>
                                     <h6 class="card-title">{$movie->categoryName}</h6>

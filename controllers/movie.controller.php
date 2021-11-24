@@ -94,7 +94,33 @@ class MovieController
         $title = $_REQUEST['title'];
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
-        $this->movieModel->updateMovie($movieID, $title, $description, $categoryID);
+
+        $path_img = $this->uploadMovieCover();
+
+        $this->movieModel->updateMovie($movieID, $title, $description, $categoryID, $path_img);
         $this->redirectToMovies(false);
+    }
+
+    function uploadMovieCover()
+    {
+        if (empty($_FILES)) {
+            return null;
+        }
+
+        $path = 'assets/images/covers';
+        $tmp_path = $_FILES['movie-cover']['tmp_name'];
+        $name = $_FILES['movie-cover']['name'];
+        $type = $_FILES['movie-cover']['type'];
+        $converted_name = uniqid() . '_' . preg_replace('/\s+/', '_', strtolower($name));
+
+        if ($type != 'image/jpg' && $type != 'image/jpeg' && $type != 'image/png') {
+            return null;
+        }
+
+        if (!move_uploaded_file($tmp_path, "$path/$converted_name")) {
+            return null;
+        }
+
+        return "$path/$converted_name";
     }
 }

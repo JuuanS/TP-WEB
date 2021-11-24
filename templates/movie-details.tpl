@@ -10,7 +10,7 @@
         <div class="row mt-3">
             <div class="col-md-4">
                 <img class="card-img-top"
-                    src="{if $movie->imageUrl !== ''}{$movie->imageUrl}{else}{BASE_URL}/assets/images/default_image.png{/if}"
+                    src="{if !empty($movie->imageUrl)}{$movie->imageUrl}{else}{BASE_URL}/assets/images/default_image.png{/if}"
                     alt="Default Image">
             </div>
             <div class="col-md-6">

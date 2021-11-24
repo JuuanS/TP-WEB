@@ -6,7 +6,7 @@ class RoleModel
 
     public function __construct()
     {
-        $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=localhost:3307;' . 'dbname=db_movietracker;charset=utf8', 'root', '');
     }
 
     function getRoles()
