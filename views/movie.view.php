@@ -10,13 +10,12 @@ class MoviesView
         $this->smarty = new Smarty();
     }
 
-    function showMovies($movies, $categories)
+    function showMovies($categories)
     {
         $this->smarty->assign('title', 'Listado de Peliculas');
-        $this->smarty->assign('movies', $movies);
         $this->smarty->assign('userRole', $_SESSION ? $_SESSION["USER_ROLE"] : 'USER');
         $this->smarty->assign('categories', $categories);
-        $this->smarty->display('templates/movies-list.tpl');
+        $this->smarty->display('templates/movies-list-csr.tpl');
     }
 
     function showMovieForm($movie, $categories, $mode, $error = null)

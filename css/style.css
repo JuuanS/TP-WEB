@@ -59,7 +59,6 @@ html {
 
 .not-found {
     height: 90vh;
-    /* background-color: var(--bs-gray-200); */
 }
 
 .not-found h1 {
@@ -78,4 +77,115 @@ html {
 
 .navbar-brand {
     font-weight: 600;
+}
+
+nav a.active {
+    border-bottom: 1px solid black;
+}
+
+.card-img-top {
+    object-fit: cover;
+}
+
+div ul.nav-tabs .nav-link.active {
+    border-color: #adb5bd #adb5bd #fff;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #adb5bd;
+}
+
+.tab-pane {
+    border-right: 1px solid #adb5bd;
+    border-left: 1px solid #adb5bd;
+    border-bottom: 1px solid #adb5bd;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding: 20px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+span.admin {
+    font-style: italic;
+    color: red;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.feedback-box {
+    border-right: 1px solid #adb5bd;
+    border-left: 1px solid #adb5bd;
+    border-bottom: 1px solid #adb5bd;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top: 1px solid #adb5bd;
+    padding: 20px;
+}
+
+#votes-search {
+    width: 150px;
+}
+.img-cover-container {
+    position: relative;
+    /* width: 50%; */
+}
+
+.img-cover-container img {
+    opacity: 1;
+    /* display: block; */
+    /* width: 100%; */
+    /* height: auto; */
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+}
+
+.img-cover-container .middle {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.img-cover-container:hover img {
+    opacity: 0.3;
+}
+
+.img-cover-container:hover .middle {
+    opacity: 1;
+}
+
+.img-cover-container .middle input[type="file"] {
+    display: none;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+
+.disabled:active {
+    pointer-events: none;
+}
+
+.btn-group-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.current-page-container #current-page {
+    font-size: 1.2em;
 }

@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='templates/header.tpl' activeLink='categorias'}
 
 <div class="container">
     <div class="mt-5 mb-5 p-4">
@@ -18,7 +18,7 @@
                             <div class="row mt-3 d-flex justify-content-center">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="title">Nombre Categoria</label>
+                                        <label for="categoryName">Nombre Categoria</label>
                                         {if $mode === 'create'}
                                         <input type="text" class="form-control" id="categoryName" name="categoryName"
                                             placeholder="Nombre Categoria" required>

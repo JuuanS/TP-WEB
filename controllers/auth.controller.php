@@ -22,7 +22,7 @@ class AuthController {
         if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
             $email = $_POST['email'];
-            $user = $this->model->getUser($email);
+            $user = $this->model->getUserByEmail($email);
             $hashedPassword = md5($_POST['password']);
 
             if ($user && ($hashedPassword == $user->password)) {

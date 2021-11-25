@@ -26,6 +26,10 @@ class AuthHelper {
         }
     }
 
+    public function getLoggedUserID() {
+        return $_SESSION['USER_ID'];
+    }
+
     function logout() {
         session_destroy();
         header("Location: " . BASE_URL . 'login');

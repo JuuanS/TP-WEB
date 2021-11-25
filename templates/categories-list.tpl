@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='templates/header.tpl' activeLink='categorias'}
 
 <div class="container">
     <div class="mt-5 mb-5 p-4">
@@ -17,19 +17,17 @@
                 <div class="row">
                     <ul class="list-group">
                         {foreach from=$categories item=$category}
-                        <div class="col-12">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div>
                                     {$category->categoryName}
                                 </div>
                                 <div>
                                     <a type="button" class="btn btn-success"
-                                        href="editar-categoria/{$category->categoryID}">Editar</a>
+                                        href="categoria/{$category->categoryID}">Editar</a>
                                     <a type="button" class="btn btn-danger ms-1"
                                         href="borrar-categoria/{$category->categoryID}">Eliminar</a>
                                 </div>
                             </li>
-                        </div>
                         {/foreach}
                     </ul>
                 </div>

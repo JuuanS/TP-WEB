@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='templates/header.tpl' activeLink='peliculas'}
 
 <div class="container">
     <div class="mt-5 mb-5 p-4">
@@ -9,7 +9,9 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-4">
-                <img class="card-img-top" src="{BASE_URL}/assets/images/default_image.png" alt="Default Image">
+                <img class="card-img-top"
+                    src="{if !empty($movie->imageUrl)}{$movie->imageUrl}{else}{BASE_URL}/assets/images/default_image.png{/if}"
+                    alt="Default Image">
             </div>
             <div class="col-md-6">
                 <div class="d-flex justify-content-start align-items-baseline">
@@ -25,6 +27,8 @@
                 </div>
             {/if}
         </div>
+        {include file='templates/vue/movie-comments.tpl'}
+        <script src="js/comments.js"></script>
         <div class="row mt-4">
             <div class="col-md-12 d-flex justify-content-center">
                 <a type="button" class="btn btn-primary" href="peliculas">Volver</a>
