@@ -60,13 +60,16 @@ class CommentsApiController
             $vote = $body->vote;
             $movieID = $body->movieID;
             $userID = $this->authHelper->getLoggedUserID();
-
-            $commentID = $this->commentModel->createComment($commentText, $vote, $movieID, $userID);
-            $newComment = $this->commentModel->getCommentByID($commentID);
-            if ($newComment) {
-                $this->view->response($newComment, 200);
+            if (!empty($userID)) {
+                $commentID = $this->commentModel->createComment($commentText, $vote, $movieID, $userID);
+                $newComment = $this->commentModel->getCommentByID($commentID);
+                if ($newComment) {
+                    $this->view->response($newComment, 200);
+                } else {
+                    $this->view->response("Error al crear comentario", 500);
+                }
             } else {
-                $this->view->response("Error al crear comentario", 500);
+                $this->view->response('Usuario no autorizado', 401);
             }
         } catch (Exception $e) {
             $this->view->response($e, 200);
@@ -76,13 +79,18 @@ class CommentsApiController
     public function deleteComment($params = [])
     {
         try {
-            $commentID = $params[':ID'];
-            $comment = $this->commentModel->getCommentByID($commentID);
-            if ($comment) {
-                $this->commentModel->deleteComment($commentID);
-                $this->view->response("Usuario eliminado con exito", 201);
+            $authorize = $this->authHelper->checkApiAdminPermission();
+            if ($authorize) {
+                $commentID = $params[':ID'];
+                $comment = $this->commentModel->getCommentByID($commentID);
+                if ($comment) {
+                    $this->commentModel->deleteComment($commentID);
+                    $this->view->response("Usuario eliminado con exito", 201);
+                } else {
+                    $this->view->response("No se encontro el usuario con id=$commentID", 404);
+                }
             } else {
-                $this->view->response("No se encontro el usuario con id=$commentID", 404);
+                $this->view->response('Usuario no autorizado', 401);
             }
         } catch (Exception $e) {
             $this->view->response($e, 200);
