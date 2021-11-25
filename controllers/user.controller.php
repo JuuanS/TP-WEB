@@ -7,14 +7,12 @@ require_once 'helpers/auth.helper.php';
 
 class UserController
 {
-    private $userModel;
     private $userView;
     private $registerView;
     private $authHelper;
 
     public function __construct()
     {
-        $this->userModel = new UserModel();
         $this->userView = new UserView();
         $this->registerView = new RegisterView();
         $this->authHelper = new AuthHelper();
