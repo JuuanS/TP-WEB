@@ -25,9 +25,18 @@ class UsersApiController
     public function getUsers($params = null)
     {
         try {
-            $loggedUserID = $this->authHelper->getLoggedUserID();
-            $users = $this->userModel->getUsers($loggedUserID);
-            $this->view->response($users, 200);
+            $authorize = $this->authHelper->checkApiAdminPermission();
+            if ($authorize) {
+                $loggedUserID = $this->authHelper->getLoggedUserID();
+                if (!empty($loggedUserID)) {
+                    $users = $this->userModel->getUsers($loggedUserID);
+                    $this->view->response($users, 200);
+                } else {
+                    $this->view->response('Usuario no autorizado', 401);
+                }
+            } else {
+                $this->view->response('Usuario no autorizado', 401);
+            }
         } catch (Exception $e) {
             $this->view->response($e, 200);
         }
@@ -36,13 +45,18 @@ class UsersApiController
     public function deleteUser($params = [])
     {
         try {
-            $userID = $params[':ID'];
-            $user = $this->userModel->getUserByID($userID);
-            if ($user) {
-                $this->userModel->deleteUser($userID);
-                $this->view->response("Usuario eliminado con exito", 201);
+            $authorize = $this->authHelper->checkApiAdminPermission();
+            if ($authorize) {
+                $userID = $params[':ID'];
+                $user = $this->userModel->getUserByID($userID);
+                if ($user) {
+                    $this->userModel->deleteUser($userID);
+                    $this->view->response("Usuario eliminado con exito", 201);
+                } else {
+                    $this->view->response("No se encontro el usuario con id=$userID", 404);
+                }
             } else {
-                $this->view->response("No se encontro el usuario con id=$userID", 404);
+                $this->view->response('Usuario no autorizado', 401);
             }
         } catch (Exception $e) {
             $this->view->response($e, 200);
@@ -83,17 +97,22 @@ class UsersApiController
     public function updateUser($params = [])
     {
         try {
-            $userID = $params[':ID'];
-            $user = $this->userModel->getUserByID($userID);
-            if ($user) {
-                $roleID = 1;
-                if ($user->roleID == 1) {
-                    $roleID = 2;
+            $authorize = $this->authHelper->checkApiAdminPermission();
+            if ($authorize) {
+                $userID = $params[':ID'];
+                $user = $this->userModel->getUserByID($userID);
+                if ($user) {
+                    $roleID = 1;
+                    if ($user->roleID == 1) {
+                        $roleID = 2;
+                    }
+                    $this->userModel->updateUserPermissions($userID, $roleID);
+                    $this->view->response("Permiso de usuario actualizado con exito", 200);
+                } else {
+                    $this->view->response("No se encontro el usuario con id=$userID", 404);
                 }
-                $this->userModel->updateUserPermissions($userID, $roleID);
-                $this->view->response("Permiso de usuario actualizado con exito", 200);
             } else {
-                $this->view->response("No se encontro el usuario con id=$userID", 404);
+                $this->view->response('Usuario no autorizado', 401);
             }
         } catch (Exception $e) {
             $this->view->response($e, 200);
