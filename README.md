@@ -1,6 +1,6 @@
 # TUDAI
 
-TP 1 - Web2
+TP 2 - Web 2
 
 Usuarios por defecto
 - Admin: adminprueba@email.com, 123456 (email, password)
