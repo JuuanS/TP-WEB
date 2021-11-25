@@ -62,7 +62,7 @@ class CategoryController
     function deleteCategory($categoryID)
     {
         $this->authHelper->checkAdminPermission();
-        $movies = $this->movieModel->getMoviesByFilter(null, $categoryID);
+        $movies = $this->movieModel->getMovies(0, 100, null, $categoryID);
         if (count($movies) === 0) {
             $this->categoryModel->deleteCategory($categoryID);
             $this->redirectToCategories();
