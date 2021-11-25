@@ -85,10 +85,10 @@ class MovieModel
         return $movie;
     }
 
-    function insertMovie($title, $description, $categoryID)
+    function insertMovie($title, $description, $categoryID, $path_img)
     {
-        $query = $this->db->prepare('INSERT INTO movies(movie_title, movie_description, category_id) VALUES (?, ?, ?)');
-        $query->execute([$title, $description, $categoryID]);
+        $query = $this->db->prepare('INSERT INTO movies(movie_title, movie_description, category_id, image_url) VALUES (?, ?, ?, ?)');
+        $query->execute([$title, $description, $categoryID, $path_img]);
 
         return $this->db->lastInsertId();
     }

@@ -65,8 +65,10 @@ class MovieController
         $description = $_REQUEST['description'];
         $categoryID = $_REQUEST['category'];
 
+        $path_img = $this->uploadMovieCover();
+
         if (!empty($title) && !empty($description) && !empty($categoryID)) {
-            $this->movieModel->insertMovie($title, $description, $categoryID);
+            $this->movieModel->insertMovie($title, $description, $categoryID, $path_img);
             $this->redirectToMovies(false);
         } else {
             $categories = $this->categoryModel->getAllCategories();
