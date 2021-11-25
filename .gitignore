@@ -1,2 +1,3 @@
 templates_c
 assets/images/*
+!assets/images/default_image.png
