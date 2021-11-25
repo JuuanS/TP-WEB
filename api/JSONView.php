@@ -13,6 +13,7 @@ class JSONView
   {
     $status = array(
       200 => "OK",
+      401 => "Unauthorized",
       403 => "Forbidden",
       404 => "Not found",
       500 => "Internal Server Error"
